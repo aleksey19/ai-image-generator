@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3655B992BAA05DC006C0025 /* AppSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3655B982BAA05DC006C0025 /* AppSession.swift */; };
 		A389DCAA2BA9F5540019D904 /* Image_GenaratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389DCA92BA9F5540019D904 /* Image_GenaratorApp.swift */; };
 		A389DCAC2BA9F5550019D904 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389DCAB2BA9F5550019D904 /* ContentView.swift */; };
 		A389DCAE2BA9F5580019D904 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A389DCAD2BA9F5580019D904 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A3655B982BAA05DC006C0025 /* AppSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSession.swift; sourceTree = "<group>"; };
 		A389DCA62BA9F5540019D904 /* Image Genarator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Image Genarator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A389DCA92BA9F5540019D904 /* Image_GenaratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image_GenaratorApp.swift; sourceTree = "<group>"; };
 		A389DCAB2BA9F5550019D904 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		A389DCA82BA9F5540019D904 /* Image Genarator */ = {
 			isa = PBXGroup;
 			children = (
+				A3655B982BAA05DC006C0025 /* AppSession.swift */,
 				A389DCA92BA9F5540019D904 /* Image_GenaratorApp.swift */,
 				A389DCDA2BA9F8C30019D904 /* Modules */,
 				A389DCD92BA9F8AA0019D904 /* CoreData */,
@@ -287,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3655B992BAA05DC006C0025 /* AppSession.swift in Sources */,
 				A389DCB32BA9F5580019D904 /* Persistence.swift in Sources */,
 				A389DCB62BA9F5580019D904 /* Image_Genarator.xcdatamodeld in Sources */,
 				A389DCAC2BA9F5550019D904 /* ContentView.swift in Sources */,
