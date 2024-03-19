@@ -99,10 +99,9 @@
 			isa = PBXGroup;
 			children = (
 				A389DCA92BA9F5540019D904 /* Image_GenaratorApp.swift */,
-				A389DCAB2BA9F5550019D904 /* ContentView.swift */,
-				A389DCAD2BA9F5580019D904 /* Assets.xcassets */,
-				A389DCB22BA9F5580019D904 /* Persistence.swift */,
-				A389DCB42BA9F5580019D904 /* Image_Genarator.xcdatamodeld */,
+				A389DCDA2BA9F8C30019D904 /* Modules */,
+				A389DCD92BA9F8AA0019D904 /* CoreData */,
+				A389DCD82BA9F89F0019D904 /* Resources */,
 				A389DCAF2BA9F5580019D904 /* Preview Content */,
 			);
 			path = "Image Genarator";
@@ -131,6 +130,31 @@
 				A389DCCB2BA9F5590019D904 /* Image_GenaratorUITestsLaunchTests.swift */,
 			);
 			path = "Image GenaratorUITests";
+			sourceTree = "<group>";
+		};
+		A389DCD82BA9F89F0019D904 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A389DCAD2BA9F5580019D904 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A389DCD92BA9F8AA0019D904 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A389DCB22BA9F5580019D904 /* Persistence.swift */,
+				A389DCB42BA9F5580019D904 /* Image_Genarator.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		A389DCDA2BA9F8C30019D904 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				A389DCAB2BA9F5550019D904 /* ContentView.swift */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
