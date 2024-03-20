@@ -17,6 +17,9 @@
 		A389DCC02BA9F5590019D904 /* Image_GenaratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389DCBF2BA9F5590019D904 /* Image_GenaratorTests.swift */; };
 		A389DCCA2BA9F5590019D904 /* Image_GenaratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389DCC92BA9F5590019D904 /* Image_GenaratorUITests.swift */; };
 		A389DCCC2BA9F5590019D904 /* Image_GenaratorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389DCCB2BA9F5590019D904 /* Image_GenaratorUITestsLaunchTests.swift */; };
+		A3CC27192BAAF4DA00571E5B /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC27182BAAF4DA00571E5B /* HTTPClient.swift */; };
+		A3CC271C2BAAF52A00571E5B /* ConfigLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC271B2BAAF52A00571E5B /* ConfigLoader.swift */; };
+		A3CC271E2BAB365B00571E5B /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3CC271D2BAB365B00571E5B /* Config.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		A389DCC52BA9F5590019D904 /* Image GenaratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Image GenaratorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A389DCC92BA9F5590019D904 /* Image_GenaratorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image_GenaratorUITests.swift; sourceTree = "<group>"; };
 		A389DCCB2BA9F5590019D904 /* Image_GenaratorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image_GenaratorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A3CC27182BAAF4DA00571E5B /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		A3CC271B2BAAF52A00571E5B /* ConfigLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigLoader.swift; sourceTree = "<group>"; };
+		A3CC271D2BAB365B00571E5B /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +106,9 @@
 		A389DCA82BA9F5540019D904 /* Image Genarator */ = {
 			isa = PBXGroup;
 			children = (
-				A3655B982BAA05DC006C0025 /* AppSession.swift */,
 				A389DCA92BA9F5540019D904 /* Image_GenaratorApp.swift */,
+				A3CC27172BAAF49A00571E5B /* HTTPClient */,
+				A3CC27162BAAF48D00571E5B /* AppSession */,
 				A389DCDA2BA9F8C30019D904 /* Modules */,
 				A389DCD92BA9F8AA0019D904 /* CoreData */,
 				A389DCD82BA9F89F0019D904 /* Resources */,
@@ -138,6 +145,7 @@
 		A389DCD82BA9F89F0019D904 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A3CC271A2BAAF50F00571E5B /* ConfigLoader */,
 				A389DCAD2BA9F5580019D904 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -158,6 +166,31 @@
 				A389DCAB2BA9F5550019D904 /* ContentView.swift */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		A3CC27162BAAF48D00571E5B /* AppSession */ = {
+			isa = PBXGroup;
+			children = (
+				A3655B982BAA05DC006C0025 /* AppSession.swift */,
+			);
+			path = AppSession;
+			sourceTree = "<group>";
+		};
+		A3CC27172BAAF49A00571E5B /* HTTPClient */ = {
+			isa = PBXGroup;
+			children = (
+				A3CC27182BAAF4DA00571E5B /* HTTPClient.swift */,
+			);
+			path = HTTPClient;
+			sourceTree = "<group>";
+		};
+		A3CC271A2BAAF50F00571E5B /* ConfigLoader */ = {
+			isa = PBXGroup;
+			children = (
+				A3CC271B2BAAF52A00571E5B /* ConfigLoader.swift */,
+				A3CC271D2BAB365B00571E5B /* Config.plist */,
+			);
+			path = ConfigLoader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +299,7 @@
 			files = (
 				A389DCB12BA9F5580019D904 /* Preview Assets.xcassets in Resources */,
 				A389DCAE2BA9F5580019D904 /* Assets.xcassets in Resources */,
+				A3CC271E2BAB365B00571E5B /* Config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +326,9 @@
 			files = (
 				A3655B992BAA05DC006C0025 /* AppSession.swift in Sources */,
 				A389DCB32BA9F5580019D904 /* Persistence.swift in Sources */,
+				A3CC27192BAAF4DA00571E5B /* HTTPClient.swift in Sources */,
 				A389DCB62BA9F5580019D904 /* Image_Genarator.xcdatamodeld in Sources */,
+				A3CC271C2BAAF52A00571E5B /* ConfigLoader.swift in Sources */,
 				A389DCAC2BA9F5550019D904 /* ContentView.swift in Sources */,
 				A389DCAA2BA9F5540019D904 /* Image_GenaratorApp.swift in Sources */,
 			);
