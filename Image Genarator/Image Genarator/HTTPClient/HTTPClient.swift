@@ -9,4 +9,12 @@ import Foundation
 
 class HTTPClient {
     
+    private let apiURL: String
+    private let clientToken: String
+    
+    init(apiURL: String,
+         clientToken: String) {
+        self.apiURL = apiURL
+        self.clientToken = clientToken
+    }
 }
