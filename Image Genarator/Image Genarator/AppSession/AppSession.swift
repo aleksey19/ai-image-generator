@@ -9,7 +9,11 @@ import Foundation
 
 final class AppSession: ObservableObject {
     
-    lazy private(set) var openAIClient = HTTPClient(apiURL: "",
-                                                    clientToken: APIUrls.openAIAccessToken)
+    lazy private(set) var openAIClient = OpenAIHTTPClient(host: APIUrls.openAIApiURL,
+                                                          apiVersion: "v1",
+                                                          notAuthorizedHandler: nil,
+                                                          serverErrorHandler: nil,
+                                                          setAuthorizationTokenHandler: nil,
+                                                          refreshAuthorizationTokenHandler: nil)
     
 }
