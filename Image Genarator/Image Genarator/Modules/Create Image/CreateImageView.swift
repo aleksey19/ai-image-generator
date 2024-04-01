@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CreateImageView: View {
     
-    var viewModel: TestViewModel
+    weak var viewModel: TestViewModel?
     
     @State private var prompt: String = ""
     
@@ -33,6 +33,6 @@ struct CreateImageView: View {
     }
     
     private func createImage() async {
-        try? await viewModel.createImage(with: prompt)
+        try? await viewModel?.createImage(with: prompt)
     }
 }
