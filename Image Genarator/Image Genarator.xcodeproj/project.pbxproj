@@ -16,6 +16,7 @@
 		A389DCC02BA9F5590019D904 /* Image_GenaratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389DCBF2BA9F5590019D904 /* Image_GenaratorTests.swift */; };
 		A389DCCA2BA9F5590019D904 /* Image_GenaratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389DCC92BA9F5590019D904 /* Image_GenaratorUITests.swift */; };
 		A389DCCC2BA9F5590019D904 /* Image_GenaratorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389DCCB2BA9F5590019D904 /* Image_GenaratorUITestsLaunchTests.swift */; };
+		A3A77E652BC6D20600361F8F /* Roadmap in Resources */ = {isa = PBXBuildFile; fileRef = A3A77E642BC6D20600361F8F /* Roadmap */; };
 		A3B12EB02BB18660009E4457 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B12EAF2BB18660009E4457 /* HTTPClient.swift */; };
 		A3B12EB32BB18690009E4457 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B12EB22BB18690009E4457 /* HTTPRequest.swift */; };
 		A3B12EB72BB18B2B009E4457 /* ExtendedLocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B12EB62BB18B2B009E4457 /* ExtendedLocalizedError.swift */; };
@@ -65,6 +66,7 @@
 		A389DCC52BA9F5590019D904 /* Image GenaratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Image GenaratorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A389DCC92BA9F5590019D904 /* Image_GenaratorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image_GenaratorUITests.swift; sourceTree = "<group>"; };
 		A389DCCB2BA9F5590019D904 /* Image_GenaratorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image_GenaratorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A3A77E642BC6D20600361F8F /* Roadmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = Roadmap; sourceTree = "<group>"; };
 		A3B12EAF2BB18660009E4457 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		A3B12EB22BB18690009E4457 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		A3B12EB62BB18B2B009E4457 /* ExtendedLocalizedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedLocalizedError.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		A389DCA82BA9F5540019D904 /* Image Genarator */ = {
 			isa = PBXGroup;
 			children = (
+				A3A77E642BC6D20600361F8F /* Roadmap */,
 				A3B12EB82BB19120009E4457 /* Services */,
 				A3B12EB42BB18AD4009E4457 /* Utils */,
 				A389DCA92BA9F5540019D904 /* Image_GenaratorApp.swift */,
@@ -418,6 +421,7 @@
 				A389DCB12BA9F5580019D904 /* Preview Assets.xcassets in Resources */,
 				A389DCAE2BA9F5580019D904 /* Assets.xcassets in Resources */,
 				A3CC271E2BAB365B00571E5B /* Config.plist in Resources */,
+				A3A77E652BC6D20600361F8F /* Roadmap in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
