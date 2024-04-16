@@ -9,5 +9,5 @@ import Foundation
 
 struct CreateImageResponse: Decodable {
     let created: Int64
-    let data: [Image]
+    let data: [GeneratedImage]
 }

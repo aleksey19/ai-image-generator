@@ -26,25 +26,25 @@ class OpenAIHTTPClient: HTTPClient {
     }
     
     /// Refresh token
-    var refreshToken: String?
+    private(set) var refreshToken: String?
     
     /// URLSession for executing requests
-    internal var session: URLSession
+    private(set) var session: URLSession
     
     /// Active data task
-    internal var task: URLSessionDataTask?
+    var task: URLSessionDataTask?
     
     /// Active request
-    internal var request: URLRequest?
+    var request: URLRequest?
     
     /// Preset retries count
-    var presetRetryCount: Int
+    private(set) var presetRetryCount: Int
     
     /// Preset refresh access token retries counter
-    var presetRefreshTokenRetryCount: Int
+    private(set) var presetRefreshTokenRetryCount: Int
     
     /// Preset timeout in seconds
-    var presetTimeout: Double = 30
+    private(set) var presetTimeout: Double = 60
     
     /// Retry counter
     private(set) var retryCounter: Int
@@ -57,7 +57,7 @@ class OpenAIHTTPClient: HTTPClient {
     var serverErrorHandler: ServerErrorHandler?
     var setAuthorizationTokenHandler: SetAuthorizationTokenHandler?
     var refreshAuthorizationTokenHandler: RefreshAuthorizationTokenHandler?
-    
+    var connectionStateChangedHandler: ConnectionStateChangedHandler?
     
     // MARK: - Init
     
@@ -68,7 +68,8 @@ class OpenAIHTTPClient: HTTPClient {
          notAuthorizedHandler: NotAuthorizedHandler?,
          serverErrorHandler: ServerErrorHandler?,
          setAuthorizationTokenHandler: SetAuthorizationTokenHandler?,
-         refreshAuthorizationTokenHandler: RefreshAuthorizationTokenHandler?) {
+         refreshAuthorizationTokenHandler: RefreshAuthorizationTokenHandler?,
+         connectionStateChangedHandler: ConnectionStateChangedHandler?) {
         self.host = host
         self.apiVersion = apiVersion
         self.presetRetryCount = retryCount
@@ -79,18 +80,25 @@ class OpenAIHTTPClient: HTTPClient {
         self.serverErrorHandler = serverErrorHandler
         self.setAuthorizationTokenHandler = setAuthorizationTokenHandler
         self.refreshAuthorizationTokenHandler = refreshAuthorizationTokenHandler
+        self.connectionStateChangedHandler = connectionStateChangedHandler
         
         let config = URLSessionConfiguration.default
-        config.timeoutIntervalForResource = presetTimeout
+        config.timeoutIntervalForRequest = presetTimeout
+//        config.timeoutIntervalForResource = presetTimeout * 60
         config.waitsForConnectivity = true
+//        config.allowsCellularAccess = true
+//        config.allowsExpensiveNetworkAccess = true
         
         session = URLSession(configuration: config)
+        
+        startTrackingConnectionState()
     }
     
     // MARK: - Deinit
     
     deinit {
         session.invalidateAndCancel()
+        stopTrackingConnectionState()
     }
     
 //    private let apiURL: String

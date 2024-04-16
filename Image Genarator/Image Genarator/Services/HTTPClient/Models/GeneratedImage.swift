@@ -1,5 +1,5 @@
 //
-//  Image.swift
+//  GeneratedImage.swift
 //  Image Genarator
 //
 //  Created by Aleksey Bidnyk on 25.03.2024.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Image {
+struct GeneratedImage {
     let url: String
     let revisedPrompt: String?
 }
 
-extension Image: Decodable {
+extension GeneratedImage: Decodable {
     public enum CodingKeys: String, CodingKey {
         case url
         case revisedPrompt = "revised_prompt"

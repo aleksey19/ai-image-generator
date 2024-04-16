@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Network
 
 protocol HTTPClient: AnyObject {
     var scheme: String { get }
@@ -43,11 +44,13 @@ protocol HTTPClient: AnyObject {
     typealias ServerErrorHandler = ((String) -> Void)
     typealias SetAuthorizationTokenHandler = ((_ token: String, _ refreshToken: String) -> Void)
     typealias RefreshAuthorizationTokenHandler = (() -> Void)
+    typealias ConnectionStateChangedHandler = ((NWPath.Status) -> Void)
     
     var notAuthorizedHandler: NotAuthorizedHandler? { get }
     var serverErrorHandler: ServerErrorHandler? { get }
     var setAuthorizationTokenHandler: SetAuthorizationTokenHandler? { get }
     var refreshAuthorizationTokenHandler: RefreshAuthorizationTokenHandler? { get }
+    var connectionStateChangedHandler: ConnectionStateChangedHandler? { get }
 }
 
 // MARK: - Composing URLRequest
@@ -243,5 +246,25 @@ extension HTTPClient {
 //        } else {
 //            throw AppError.develop("Can't renew authorisation token because can't construct request or can't find failed request")
 //        }
+    }
+}
+
+// MARK: - Restart request after connection establishes
+
+extension HTTPClient {
+    
+    func startTrackingConnectionState() {
+        NetworkConnectionMonitor.shared.startTrackingConnectionState(with: connectionStateChangedHandler)
+    }
+    
+    func stopTrackingConnectionState() {
+        NetworkConnectionMonitor.shared.stopTrackingConnectionState()
+    }
+    
+    func restartFailedRequest<T: Codable>() async throws -> T {
+        if let request = self.request {
+            return try await runWithRetry(request)
+        }
+        throw AppError.develop("restartFailedRequest func still haven't been finished!")
     }
 }

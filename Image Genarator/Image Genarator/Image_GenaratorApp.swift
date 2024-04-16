@@ -9,25 +9,19 @@ import SwiftUI
 
 @main
 struct Image_GenaratorApp: App {
-//    let persistenceController = PersistenceController.shared
-    private lazy var appSession = AppSession()
+    //    let persistenceController = PersistenceController.shared
+    @StateObject private var appSession = AppSession.shared
     
     var body: some Scene {
         WindowGroup {
-            ContentView(
-                viewModel: TestViewModel(
-                    httpClient: OpenAIHTTPClient(
-                        host: APIUrls.openAIApiURL,
-                        apiVersion: "v1",
-                        notAuthorizedHandler: nil,
-                        serverErrorHandler: nil,
-                        setAuthorizationTokenHandler: nil,
-                        refreshAuthorizationTokenHandler: nil
-                    )
+            ZStack {
+                ContentView(
+                    viewModel: .init(httpClient: appSession.openAIClient)
                 )
-            )
-//            ContentView()
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(appSession)
+                //            ContentView()
+                //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            }
         }
     }
 }

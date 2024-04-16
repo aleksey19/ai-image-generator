@@ -23,13 +23,13 @@ extension AppError: ExtendedLocalizedError {
         switch self {
             
         case .develop(_):
-            return "dev-error"
+            return "gear.badge.xmark"
         
         case .server(_):
-            return "server-error"
+            return "externaldrive.fill.badge.xmark"
             
         case .navigation(_):
-            return "nav-error"
+            return "rectangle.badge.xmark.fill"
         }
     }
     
@@ -59,5 +59,12 @@ extension AppError: ExtendedLocalizedError {
         case .navigation(_):
             return "Scenes navigation error. Ensure that routing works correctly"
         }
+    }
+}
+
+extension AppError: Equatable {
+    
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.errorDescription == rhs.errorDescription
     }
 }
