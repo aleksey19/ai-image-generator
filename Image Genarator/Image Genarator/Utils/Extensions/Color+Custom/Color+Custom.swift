@@ -17,8 +17,16 @@ extension Color {
         Color("button-title")
     }
     
+    static var buttonTitle2: Color {
+        Color("button-title")
+    }
+    
     static var button: Color {
         Color("button")
+    }
+    
+    static var button2: Color {
+        Color("button2")
     }
     
     static var textMain: Color {

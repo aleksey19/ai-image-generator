@@ -13,7 +13,18 @@ struct CreateImageView: View {
     @StateObject var viewModel: CreateImageViewModel
     
     @State private var prompt: String = ""
-    @State private var presentAlert: Bool = false
+    
+    private var blurContent: Bool {
+        viewModel.showLoading || presentError || presentImageSheet || presentImageStyleSheet || presentImageSizeSheet || presentImageGeneratorSourceSheet
+    }
+    
+    // MARK: - Presenting switchers
+    
+    @State private var presentError: Bool = false
+    @State private var presentImageSheet: Bool = false
+    @State private var presentImageStyleSheet: Bool = false
+    @State private var presentImageSizeSheet: Bool = false
+    @State private var presentImageGeneratorSourceSheet: Bool = false
     
     @State var enableCreateImage: Bool = false
     
@@ -25,22 +36,6 @@ struct CreateImageView: View {
             
             VStack(alignment: .center) {
                 
-                if viewModel.imageUrl != nil {
-                    AsyncImage(url: viewModel.imageUrl) { phase in
-                        switch phase {
-                            
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .scaledToFit()
-                            
-                        default:
-                            EmptyView()
-                        }
-                    }
-                    .padding()
-                }
-                
                 TextField("Enter image prompt", text: $prompt.animation(), axis: .vertical)
                     .multilineTextAlignment(.leading)
                     .lineLimit(5, reservesSpace: true)
@@ -51,22 +46,31 @@ struct CreateImageView: View {
                     }
                     .padding(10)
                 
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], alignment: .leading, spacing: 15) {
+                    OptionButton(enabled: .constant(true), foregroundColor: .buttonTitle2, backgroundColor: .button2, title: "Style", isOptional: true) {
+                        presentImageStyleSheet.toggle()
+                    }
+                    
+                    OptionButton(enabled: .constant(true), foregroundColor: .buttonTitle2, backgroundColor: .button2, title: "Resolution", isOptional: true) {
+                        presentImageSizeSheet.toggle()
+                    }
+                    
+                    OptionButton(enabled: .constant(false), foregroundColor: .buttonTitle2, backgroundColor: .button2, title: "AI Model", isOptional: true) {
+                        presentImageGeneratorSourceSheet.toggle()
+                    }
+                }
+                .padding([.leading, .trailing], 10)
+                
                 MainButton(enabled: $prompt.map { $0.count > 2 }, foregroundColor: .buttonTitle, backgroundColor: .button, title: "Create Image") {
                     dismissKeyboard()
                     Task {
                         await createImage()
                     }
                 }
-                
-                Button("Clear image") {
-                    cleanImage()
-                }
-                .tint(Color.red)
-                .opacity(viewModel.imageUrl != nil ? 1 : 0)
             }
             .padding()
-            .blur(radius: (viewModel.showLoading == true || presentAlert == true) ? 3 : 0)
-            .animation(.default, value: presentAlert)
+            .blur(radius: blurContent ? 3 : 0)
+            .animation(.default, value: presentError)
             
             if viewModel.showLoading {
                 LoadingView()
@@ -74,19 +78,41 @@ struct CreateImageView: View {
             }
             
             if let error = viewModel.error,
-               presentAlert == true {
+               presentError == true {
                 AlertView(title: "Error", message: error.localizedDescription, imageName: error.imageName) {
-                    presentAlert = false
+                    presentError = false
                 }
-                .animation(.default, value: presentAlert)
+                .animation(.default, value: presentError)
             }
         }
         .onTapGesture {
             dismissKeyboard()
         }
         .onChange(of: viewModel.error) { newValue in
-            presentAlert = newValue != nil
+            presentError = newValue != nil
         }
+        .onChange(of: viewModel.imageUrl) { newValue in
+            presentImageSheet = newValue != nil
+        }
+        .sheet(isPresented: $presentImageSheet) {
+            if viewModel.imageUrl != nil {
+                GeneratedImageView(viewModel: viewModel)
+            }
+        }
+        .sheet(isPresented: $presentImageStyleSheet) {
+            SheetView(selectedOption: viewModel.imageStyle, options: viewModel.imageStyles) {
+                viewModel.imageStyle = $0
+            }
+        }
+//        .sheet(isPresented: $presentImageStyleSheet) {
+//            SheetView($viewModel.imageStyle, options: viewModel.imageStyles)
+//        }
+//        .sheet(isPresented: $presentImageSizeSheet) {
+//            SheetView($viewModel.imageSize, options: viewModel.imageSizes)
+//        }
+//        .sheet(isPresented: $presentImageGeneratorSourceSheet) {
+//            SheetView($viewModel.imageGenerationSource, options: viewModel.imageGenerationSources)
+//        }
     }
     
     // MARK: - Funcs

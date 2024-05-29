@@ -10,18 +10,14 @@ import Foundation
 final class ConfigLoader {
     static let configName = "Config.plist"
     
-    static func parseConfig(named fileName: String = configName) -> Configuration {
+    static func parseConfig(named fileName: String = configName) throws -> Configuration {
         guard let filePath = Bundle.main.path(forResource: fileName, ofType: nil),
-            let fileData = FileManager.default.contents(atPath: filePath) else {
-                fatalError("🚫 Configuration file \(fileName) can't be loaded!")
+              let fileData = FileManager.default.contents(atPath: filePath) else {
+            throw AppError.develop("🚫 Configuration file \(fileName) can't be found")
         }
         
-        do {
-            let config = try PropertyListDecoder().decode(Configuration.self, from: fileData)
-            return config
-        } catch {
-            fatalError("🚫 Configuration file \(fileName) can't be decoded: \(error)!")
-        }
+        let config = try PropertyListDecoder().decode(Configuration.self, from: fileData)
+        return config
     }
 }
 
