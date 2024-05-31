@@ -9,7 +9,7 @@ import Foundation
 
 struct CreateImageRequest: HTTPRequest {
     let method: HTTPMethod = .post
-    let path: String = "/images/generations"
+    let path: String = "images/generations"
     let query: [URLQueryItem]?
     let body: Encodable?
     

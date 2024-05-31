@@ -10,21 +10,19 @@ import Network
 
 protocol HTTPClient: AnyObject {
     var scheme: String { get }
-    var host: String { get }
-    var apiVersion: String { get }
+    var host: String? { get }
+    var apiVersion: String? { get }
     var port: Int? { get }
     var accessToken: String? { get }
     var refreshToken: String? { get }
     
-    var session: URLSession { get }
+    var session: URLSessionProtocol { get }
     var task: URLSessionDataTask? { get set }
     var request: URLRequest? { get set }
     
     var presetRetryCount: Int { get }
-    var presetRefreshTokenRetryCount: Int { get }
     var presetTimeout: Double { get }
     var retryCounter: Int { get }
-    var refreshTokenRetryCounter: Int { get }
     
     func makeURLRequest(_ request: HTTPRequest) throws -> URLRequest?
     func composeRequestHeaders() -> [String: String]
@@ -35,9 +33,6 @@ protocol HTTPClient: AnyObject {
     
     func resetRetryConuter()
     func decrementRetryConuter()
-    
-    func resetRefreshTokenConuter()
-    func decrementRefreshTokenConuter()
     
     
     typealias NotAuthorizedHandler = (() -> Void)
@@ -75,7 +70,7 @@ extension HTTPClient {
         urlComponents.scheme = scheme
         urlComponents.host = host
         urlComponents.port = port
-        urlComponents.path = "/".appending(apiVersion.appending(request.path))
+        urlComponents.path = apiVersion.notEmpty ? "/".appending(apiVersion!.appending(request.path)) : "/".appending(request.path)
         
         if let query = request.query {
             urlComponents.queryItems = query
@@ -102,9 +97,6 @@ extension HTTPClient {
     
     func resetRetryConuter() { }
     func decrementRetryConuter() { }
-    
-    func resetRefreshTokenConuter() { }
-    func decrementRefreshTokenConuter() { }
 }
 
 // MARK: - Methods
@@ -148,104 +140,18 @@ extension HTTPClient {
             throw error
         }
         
-        // Authorize to view this resource
-        if statusCode == 401 {
-            if accessToken != nil {
-                return try await refreshToken()
-            } else {
-//                notAuthorizedHandler?()
-                throw AppError.server("401 error")
-            }
-        }
-        
-        // Update application to view this resource
-        if statusCode == 426 {
-            let error = NSError(domain: "HTTPResponseError",
-                                code: statusCode,
-                                userInfo: [NSLocalizedDescriptionKey: "Application version outdated. Please update the application!"])
-            serverErrorHandler?(error.localizedDescription)
-            throw error
-        }
-        
-        // Handle 204 code (request succeded but returned empty response)
-        if statusCode == 204 {
-        }
-        
-        // Handle error object
-//        if let errorObject = try? JSONDecoder().decode(ResponseObjectWithError.self, from: data),
-//           let error = errorObject.localizedError {
-//            throw error
-//        }
-        
-        // If execution reaches here request has finished with 200 code
-        if refreshTokenRetryCounter != presetRefreshTokenRetryCount {
-            resetRefreshTokenConuter()
-        }
-        
         do {
             let object = try JSONDecoder().decode(T.self, from: data)
-                            
             return object
-        } catch let error {
+        }
+//        catch let error as DecodingError {
+//            AppLogger.shared.log(error: error)
+//            throw AppError.decoding(error)
+//        }
+        catch {
             AppLogger.shared.log(error: error)
-            
-            /// Print for test purpose
-            let json = String(data: data, encoding: .utf8)
-            let code = statusCode
-            
-            debugPrint(code)
-            debugPrint(json ?? "-")
-            ///
-            
             throw error
         }
-    }
-}
-
-// MARK: - Refresh token
-
-extension HTTPClient {
-    
-    /**
-     Refreshes authorisation token.
-     If refresh fails or refresh count expires then execute `notAuthorizedHandler` (redirects to sign in).
-     */
-    private func refreshToken<T: Decodable>() async throws -> T {
-        guard let refreshToken = refreshToken else {
-            throw AppError.develop("Can't renew authorisation token because refresh token is nil")
-        }
-        
-        guard refreshTokenRetryCounter > 0 else {
-            notAuthorizedHandler?()
-            throw AppError.server("Can't refresh authorisation token. Refresh tries expired")
-        }
-        
-        decrementRefreshTokenConuter()
-        
-        throw AppError.develop("Finish retry func")
-        
-//        let body = RefreshTokenRequestBody(refreshToken: refreshToken,
-//                                           clientId: ConfigLoader.parseConfig().clientID,
-//                                           clientSecret: ConfigLoader.parseConfig().clientSecret)
-//        let request = RefreshTokenRequest(body: body)
-//
-//        if let urlRequest = try makeURLRequest(request),
-//           var failedRequest = self.request {
-//            let refreshTokenResponse: RefreshTokenResponse = try await run(urlRequest)
-//            if let data = refreshTokenResponse.data {
-//                // Save new token
-//                setAuthorizationTokenHandler?(data.token, data.refreshToken)
-//                // Retry failed request
-//                failedRequest.allHTTPHeaderFields?["Authorization"] = "Bearer " + data.token
-//                let response: T = try await runWithRetry(failedRequest)
-//
-//                return response
-//            } else {
-//                throw AppError.server("Refresh token request returned empty data")
-//            }
-//        } else {
-//            throw AppError.develop("Can't renew authorisation token because can't construct request or can't find failed request")
-//        }
     }
 }
 
