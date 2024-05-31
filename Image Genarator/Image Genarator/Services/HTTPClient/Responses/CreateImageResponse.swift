@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CreateImageResponse: Decodable {
+struct CreateImageResponse: Decodable, Equatable {
     let created: Int64
     let data: [GeneratedImage]
 }

@@ -12,6 +12,7 @@ final class AppSession: ObservableObject {
     static let shared = AppSession()
     
     lazy private(set) var openAIClient: HTTPClient = OpenAIHTTPClient(
+        session: URLSession.shared,
         host: APIUrls.openAIApiURL,
         apiVersion: "v1",
         notAuthorizedHandler: nil,
