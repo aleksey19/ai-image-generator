@@ -59,7 +59,6 @@ class OpenAIHTTPClient: HTTPClient {
          host: String,
          apiVersion: String? = nil,
          retryCount: Int = 0,
-         refreshTokenCount: Int = 0,
          notAuthorizedHandler: NotAuthorizedHandler?,
          serverErrorHandler: ServerErrorHandler?,
          setAuthorizationTokenHandler: SetAuthorizationTokenHandler?,
@@ -94,6 +93,16 @@ class OpenAIHTTPClient: HTTPClient {
 //        self.apiURL = apiURL
 //        self.clientToken = clientToken
 //    }
+    
+    // MARK: - Retry counter
+    
+    func resetRetryConuter() {
+        retryCounter = presetRetryCount
+    }
+    
+    func decrementRetryConuter() {
+        retryCounter -= 1
+    }
     
     // MARK: - Logging
     
