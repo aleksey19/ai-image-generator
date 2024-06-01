@@ -10,6 +10,7 @@ import XCTest
 
 final class CreateImageViewModelTests: XCTestCase {
 
+    
     var sut: CreateImageViewModel!
     
     override func setUpWithError() throws {

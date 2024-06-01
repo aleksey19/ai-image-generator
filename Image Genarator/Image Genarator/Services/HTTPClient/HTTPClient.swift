@@ -36,7 +36,7 @@ protocol HTTPClient: AnyObject {
     
     
     typealias NotAuthorizedHandler = (() -> Void)
-    typealias ServerErrorHandler = ((String) -> Void)
+    typealias ServerErrorHandler = (() -> Void)
     typealias SetAuthorizationTokenHandler = ((_ token: String, _ refreshToken: String) -> Void)
     typealias RefreshAuthorizationTokenHandler = (() -> Void)
     typealias ConnectionStateChangedHandler = ((NWPath.Status) -> Void)
@@ -95,8 +95,8 @@ extension HTTPClient {
         AppError.develop("Error while composing request URL")
     }
     
-    func resetRetryConuter() { }
-    func decrementRetryConuter() { }
+//    func resetRetryConuter() { }
+//    func decrementRetryConuter() { }
 }
 
 // MARK: - Methods
@@ -140,6 +140,20 @@ extension HTTPClient {
             throw error
         }
         
+        if statusCode == 401 {
+            notAuthorizedHandler?()
+            throw AppError.server("Not authorized")
+        }
+        
+        if statusCode == 500 {
+            serverErrorHandler?()
+            throw AppError.server("Internal server error")
+        }
+        
+        guard statusCode == 200 else {
+            throw AppError.server("Server error, code: \(statusCode)")
+        }
+        
         do {
             let object = try JSONDecoder().decode(T.self, from: data)
             return object
@@ -167,10 +181,10 @@ extension HTTPClient {
         NetworkConnectionMonitor.shared.stopTrackingConnectionState()
     }
     
-    func restartFailedRequest<T: Codable>() async throws -> T {
-        if let request = self.request {
-            return try await runWithRetry(request)
-        }
-        throw AppError.develop("restartFailedRequest func still haven't been finished!")
-    }
+//    func restartFailedRequest<T: Codable>() async throws -> T {
+//        if let request = self.request {
+//            return try await runWithRetry(request)
+//        }
+//        throw AppError.develop("restartFailedRequest func still haven't been finished!")
+//    }
 }

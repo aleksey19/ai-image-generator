@@ -21,8 +21,9 @@ final class OpenAIHTTPClientTests: XCTestCase {
         sut = .init(session: session,
                     host: "test.com",
                     apiVersion: "",
+                    retryCount: 3,
                     notAuthorizedHandler: { self.notAuthorizedHandlerExecuted = true },
-                    serverErrorHandler: { error in self.serverErrorHandlerExecuted = true },
+                    serverErrorHandler: { self.serverErrorHandlerExecuted = true },
                     setAuthorizationTokenHandler: nil,
                     refreshAuthorizationTokenHandler: nil,
                     connectionStateChangedHandler: nil)
@@ -78,7 +79,7 @@ final class OpenAIHTTPClientTests: XCTestCase {
     func test_OpenAIClient_whenCantConstructURLRequest_throwsWrongUrlError() throws {
         // given
         let request = MockHTTPRequestInvalidPath()
-        // Set host to nil to provoke throwing an error
+        // Set host to nil to provoke throwing an error when composing an URLRequest
         sut.host = nil
         let givenError = AppError.develop("Error while composing request URL")
         
@@ -93,10 +94,33 @@ final class OpenAIHTTPClientTests: XCTestCase {
         await XCTAssertThrowsError_Async(try await whenExecuteCreateImageRequest(statusCode: 500))
     }
     
+    func test_OpenAIClient_whenGot500Error_executesServerErrorHandler() async {
+        _ = try? await whenExecuteCreateImageRequest(statusCode: 500)
+        XCTAssertTrue(serverErrorHandlerExecuted)
+    }
+    
+    func test_OpenAIClient_whenGot401Error_executesNotAuthorizedHandler() async {
+        _ = try? await whenExecuteCreateImageRequest(statusCode: 401)
+        XCTAssertTrue(notAuthorizedHandlerExecuted)
+    }
+    
+    func test_OpenAIClient_whenGotUnknownErrorCode_throwsError() async {
+        // given
+        let statusCode = 426
+        let givenError = "Server error, code: \(statusCode)"
+        // when
+        do {
+            _ = try await whenExecuteCreateImageRequest(statusCode: statusCode)
+        } catch {
+            // then
+            XCTAssertEqual(givenError, error.localizedDescription)
+        }
+    }
+    
     func test_OpenAIClient_whenExecutesRequestAndCantComposeURL_throwsError() async {
         // given
         let request = MockHTTPRequestInvalidPath()
-        // Set host to nil to provoke throwing an error
+        // Set host to nil to provoke throwing an error when composing an URLRequest
         sut.host = nil
         
         await XCTAssertThrowsError_Async(try await sut.execute(request, responseType: CreateImageResponse.self))
@@ -126,6 +150,26 @@ final class OpenAIHTTPClientTests: XCTestCase {
         }
     }
     
+    // MARK: - Retry counter tests
+    
+    func test_OpenAIClient_decrementsRetryCounter() {
+        // given
+        let givenCounter = sut.retryCounter
+        // when
+        sut.decrementRetryConuter()
+        // then
+        XCTAssertEqual(sut.retryCounter, givenCounter - 1)
+    }
+    
+    func test_OpenAIClient_resetsRetryCounter() {
+        // given
+        sut.decrementRetryConuter()
+        sut.decrementRetryConuter()
+        // when
+        sut.resetRetryConuter()
+        // then
+        XCTAssertEqual(sut.retryCounter, sut.presetRetryCount)
+    }
 }
 
 extension Image_Genarator.OpenAIHTTPClient {
