@@ -70,6 +70,8 @@
 		A3DF393B2BCED533003EAF23 /* Binding+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DF393A2BCED533003EAF23 /* Binding+Map.swift */; };
 		A3E4D8C52C16F76400738266 /* StoredImage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E4D8C32C16F76400738266 /* StoredImage+CoreDataProperties.swift */; };
 		A3E4D8C62C16F76400738266 /* StoredImage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E4D8C42C16F76400738266 /* StoredImage+CoreDataClass.swift */; };
+		A3E299162C13487A007F22F7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E299152C13487A007F22F7 /* SettingsView.swift */; };
+		A3E2991B2C134F84007F22F7 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E2991A2C134F84007F22F7 /* SettingsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +160,8 @@
 		A3DF393A2BCED533003EAF23 /* Binding+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Map.swift"; sourceTree = "<group>"; };
 		A3E4D8C32C16F76400738266 /* StoredImage+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoredImage+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3E4D8C42C16F76400738266 /* StoredImage+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoredImage+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A3E299152C13487A007F22F7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A3E2991A2C134F84007F22F7 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -466,6 +470,7 @@
 			isa = PBXGroup;
 			children = (
 				A32E0A312C170ED700A9625C /* Stored Images */,
+				A3E299172C134F55007F22F7 /* Settings */,
 				A34B65C52BCFCC9100A4CD96 /* Generated Image */,
 				A3B12ECC2BB1CB6E009E4457 /* Create Image */,
 				A389DCAB2BA9F5550019D904 /* ContentView_.swift */,
@@ -707,6 +712,31 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		A3E299172C134F55007F22F7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A3E299182C134F63007F22F7 /* View Model */,
+				A3E299192C134F6C007F22F7 /* View */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		A3E299182C134F63007F22F7 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				A3E2991A2C134F84007F22F7 /* SettingsViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		A3E299192C134F6C007F22F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A3E299152C13487A007F22F7 /* SettingsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -853,6 +883,8 @@
 				A3B4D5212BCD8F23007A6188 /* NetworkConnectionMonitor.swift in Sources */,
 				A3E4D8C62C16F76400738266 /* StoredImage+CoreDataClass.swift in Sources */,
 				A3655B992BAA05DC006C0025 /* AppSession.swift in Sources */,
+				A389DCB32BA9F5580019D904 /* Persistence.swift in Sources */,
+				A3E2991B2C134F84007F22F7 /* SettingsViewModel.swift in Sources */,
 				A3B12EBB2BB19143009E4457 /* AppLogger.swift in Sources */,
 				A3BF9EB12BD0379B00B9F082 /* SheetViewRow.swift in Sources */,
 				A3DF39382BCEC7C8003EAF23 /* MainButton.swift in Sources */,
@@ -886,6 +918,7 @@
 				A3B12ED12BB1CDC6009E4457 /* CreateImageView.swift in Sources */,
 				A30FE2B02C072982009341A1 /* StringOptional+NotEmpty.swift in Sources */,
 				A34B65CB2BCFCCC400A4CD96 /* GeneratedImageViewModel.swift in Sources */,
+				A3E299162C13487A007F22F7 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
