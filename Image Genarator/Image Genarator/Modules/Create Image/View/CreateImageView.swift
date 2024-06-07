@@ -15,7 +15,7 @@ struct CreateImageView: View {
     @State private var prompt: String = ""
     
     private var blurContent: Bool {
-        viewModel.showLoading || presentError || presentImageSheet || presentImageStyleSheet || presentImageSizeSheet || presentImageGeneratorSourceSheet
+        presentError || presentImageSheet || presentImageStyleSheet || presentImageSizeSheet || presentImageGeneratorSourceSheet
     }
     
     // MARK: - Presenting switchers
@@ -48,15 +48,15 @@ struct CreateImageView: View {
                 
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], alignment: .leading, spacing: 15) {
                     OptionButton(enabled: .constant(true), foregroundColor: .buttonTitle2, backgroundColor: .button2, title: "Style", isOptional: true) {
-                        presentImageStyleSheet.toggle()
+//                        presentImageStyleSheet.toggle()
                     }
                     
                     OptionButton(enabled: .constant(true), foregroundColor: .buttonTitle2, backgroundColor: .button2, title: "Resolution", isOptional: true) {
-                        presentImageSizeSheet.toggle()
+//                        presentImageSizeSheet.toggle()
                     }
                     
                     OptionButton(enabled: .constant(false), foregroundColor: .buttonTitle2, backgroundColor: .button2, title: "AI Model", isOptional: true) {
-                        presentImageGeneratorSourceSheet.toggle()
+//                        presentImageGeneratorSourceSheet.toggle()
                     }
                 }
                 .padding([.leading, .trailing], 10)
@@ -71,11 +71,6 @@ struct CreateImageView: View {
             .padding()
             .blur(radius: blurContent ? 3 : 0)
             .animation(.default, value: presentError)
-            
-            if viewModel.showLoading {
-                LoadingView()
-                    .animation(.default, value: viewModel.showLoading)
-            }
             
             if let error = viewModel.error,
                presentError == true {

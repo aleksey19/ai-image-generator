@@ -21,7 +21,7 @@ Feature plan
 
 1. Generate image with text description.
 1.1. Create view with text input and image to display generated result. ✅
-1.2. Display result under text input.
+1.2. Display result under text input. ❓
 1.3. Add full screen image view. ✅
 1.4. Add color scheme. ✅
 1.5. Share image.

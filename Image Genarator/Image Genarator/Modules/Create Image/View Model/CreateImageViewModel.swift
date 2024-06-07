@@ -10,6 +10,7 @@ import SwiftUI
 
 class CreateImageViewModel: ObservableObject {
     
+    private weak var appSession: AppSession?
     private weak var httpClient: HTTPClient?
     
     @MainActor
@@ -35,7 +36,9 @@ class CreateImageViewModel: ObservableObject {
     
     // MARK: - Init
     
-    init(httpClient: HTTPClient?) {
+    init(appSession: AppSession?,
+         httpClient: HTTPClient?) {
+        self.appSession = appSession
         self.httpClient = httpClient
     }
     
@@ -46,6 +49,7 @@ class CreateImageViewModel: ObservableObject {
             error = nil
             imageUrl = nil
             showLoading.toggle()
+            appSession?.isLoadingNetworkData = true
         }
         
         try? await Task.sleep(nanoseconds: 2_000_000_000)
@@ -55,26 +59,27 @@ class CreateImageViewModel: ObservableObject {
             //            error = .server("Can't generate image. Please try again later or change the prompt")
         })
         
-        //        let body = CreateImageRequestBody(prompt: prompt, model: nil, n: nil, size: nil, style: nil)
-        //        let request = CreateImageRequest(body: body)
-        //
-        //        do {
-        //            let response: CreateImageResponse? = try await httpClient?.execute(request)
-        //
-        //            if let urlString = response?.data.first?.url,
-        //               let url = URL(string: urlString) {
-        //                await MainActor.run(body: {
-        //                    imageUrl = url
-        //                })
-        //            }
-        //        } catch {
-        //            await MainActor.run {
-        //                self.error = .server(error.localizedDescription)
-        //            }
-        //        }
+        let body = CreateImageRequestBody(prompt: prompt, model: nil, n: nil, size: nil, style: nil)
+        let request = CreateImageRequest(body: body)
+        
+//        do {
+//            let response: CreateImageResponse? = try await httpClient?.execute(request)
+//
+//            if let urlString = response?.data.first?.url,
+//               let url = URL(string: urlString) {
+//                await MainActor.run(body: {
+//                    imageUrl = url
+//                })
+//            }
+//        } catch {
+//            await MainActor.run {
+//                self.error = .server(error.localizedDescription)
+//            }
+//        }
         
         await MainActor.run(body: {
             showLoading.toggle()
+            appSession?.isLoadingNetworkData = false
         })
     }
     
