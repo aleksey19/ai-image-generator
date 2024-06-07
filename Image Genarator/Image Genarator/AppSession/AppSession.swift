@@ -10,8 +10,6 @@ import CoreData
 
 final class AppSession: ObservableObject {
     
-    static let shared = AppSession()
-    
     lazy private(set) var openAIClient: HTTPClient = OpenAIHTTPClient(
         session: URLSession.shared,
         host: APIUrls.openAIApiURL,
@@ -40,4 +38,5 @@ final class AppSession: ObservableObject {
     lazy private(set) var imagesStorageDataManager: any StoredDataManager = StoredImagesDataManager(persistentContainer: container)
     
     @Published var connectionIsReachable: Bool = true
+    @Published var isLoadingNetworkData: Bool = false
 }

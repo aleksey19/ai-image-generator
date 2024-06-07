@@ -9,51 +9,89 @@ import SwiftUI
 
 @main
 struct Image_GenaratorApp: App {
+    //    let persistenceController = PersistenceController.shared
+    @StateObject private var appSession = AppSession()
     
-    @StateObject private var appSession = AppSession.shared
+    //    init() {
+    //        // this is not the same as manipulating the proxy directly
+    //        let appearance = UINavigationBarAppearance()
+    //
+    //        // this overrides everything you have set up earlier.
+    //        appearance.configureWithTransparentBackground()
+    //
+    //        // this only applies to big titles
+    //        appearance.largeTitleTextAttributes = [
+    //            .font : UIFont.systemFont(ofSize: 20),
+    //            NSAttributedString.Key.foregroundColor : UIColor.black
+    //        ]
+    //        // this only applies to small titles
+    //        appearance.titleTextAttributes = [
+    //            .font : UIFont.systemFont(ofSize: 20),
+    //            NSAttributedString.Key.foregroundColor : UIColor.black
+    //        ]
+    //
+    //        //In the following two lines you make sure that you apply the style for good
+    //        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    //        UINavigationBar.appearance().standardAppearance = appearance
+    //
+    //        // This property is not present on the UINavigationBarAppearance
+    //        // object for some reason and you have to leave it til the end
+    //        UINavigationBar.appearance().tintColor = UIColor(named: "bg")
+    //    }
     
-//    init() {
-//        // this is not the same as manipulating the proxy directly
-//        let appearance = UINavigationBarAppearance()
-//        
-//        // this overrides everything you have set up earlier.
-//        appearance.configureWithTransparentBackground()
-//        
-//        // this only applies to big titles
-//        appearance.largeTitleTextAttributes = [
-//            .font : UIFont.systemFont(ofSize: 20),
-//            NSAttributedString.Key.foregroundColor : UIColor.black
-//        ]
-//        // this only applies to small titles
-//        appearance.titleTextAttributes = [
-//            .font : UIFont.systemFont(ofSize: 20),
-//            NSAttributedString.Key.foregroundColor : UIColor.black
-//        ]
-//        
-//        //In the following two lines you make sure that you apply the style for good
-//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-//        UINavigationBar.appearance().standardAppearance = appearance
-//        
-//        // This property is not present on the UINavigationBarAppearance
-//        // object for some reason and you have to leave it til the end
-//        UINavigationBar.appearance().tintColor = UIColor(named: "bg")
-//    }
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
+    
+    var blurContent: Bool {
+        appSession.isLoadingNetworkData
+    }
     
     var body: some Scene {
         WindowGroup {
+            
             ZStack {
-                ContentView(
-                    viewModel: .init(httpClient: appSession.openAIClient)
-                )
-                .environmentObject(appSession)
-                //            ContentView()
-                //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                Color.bg.ignoresSafeArea(.all)
                 
-//                GeometryReader { reader in
-//                    Color.yellow
-//                        .frame(height: reader.safeAreaInsets.top, alignment: .top)
-//                        .ignoresSafeArea()
-//                }
+                VStack {
+                    if appSession.connectionIsReachable == false {
+                        Label("No internet", systemImage: "wifi.slash")
+                            .font(.caption)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.white)
+                            .frame(width: UIScreen.main.bounds.size.width)
+                            .padding(5)
+                            .background(Color.red)
+                            .animation(.default, value: appSession.connectionIsReachable)
+                            .padding(.top)
+                    }
+                    
+                    Spacer()
+                    
+                    TabView {
+                        CreateImageView(
+                            viewModel: .init(appSession: appSession, httpClient: appSession.openAIClient)
+                        )
+                        .preferredColorScheme(isDarkMode ? .dark : .light)
+                        .environmentObject(appSession)
+                        //            ContentView()
+                        //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                        .tabItem {
+                            Label("Main", systemImage: "paintbrush.pointed")
+                        }
+                        
+                        SettingsView()
+                            .preferredColorScheme(isDarkMode ? .dark : .light)
+                            .tabItem {
+                                Label("Settings", systemImage: "gearshape")
+                            }
+                    }
+                    .tint(Color.textMain)
+                }
+                .blur(radius: blurContent ? 3 : 0)
+                
+                if appSession.isLoadingNetworkData {
+                    LoadingView()
+                        .animation(.default, value: appSession.isLoadingNetworkData)
+                }
             }
         }
     }

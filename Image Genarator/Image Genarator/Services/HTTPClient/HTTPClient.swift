@@ -70,7 +70,7 @@ extension HTTPClient {
         urlComponents.scheme = scheme
         urlComponents.host = host
         urlComponents.port = port
-        urlComponents.path = apiVersion.notEmpty ? "/".appending(apiVersion!.appending(request.path)) : "/".appending(request.path)
+        urlComponents.path = apiVersion.notEmpty ? "/".appending(apiVersion!.appending("/").appending(request.path)) : "/".appending(request.path)
         
         if let query = request.query {
             urlComponents.queryItems = query

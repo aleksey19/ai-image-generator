@@ -18,6 +18,7 @@ struct ContentView: View {
         ZStack {
             Color.bg.ignoresSafeArea()
             
+            
             VStack {
                 if appSession.connectionIsReachable == false {
                     Label("No internet", systemImage: "wifi.slash")
@@ -37,7 +38,7 @@ struct ContentView: View {
                 
                 Spacer()
             }
-            .navigationTitle("Create Image")
         }
+        
     }
 }

@@ -42,7 +42,11 @@ struct OptionButton: View {
             }
         }
         .buttonStyle(
-            CTAButtonStyle(backgroundColor: backgroundColor, foregroundColor: foregroundColor, enabled: true)
+            CTAButtonStyle(
+                backgroundColor: backgroundColor,
+                foregroundColor: foregroundColor,
+                enabled: true
+            )
         )
         .disabled(!enabled)
     }
