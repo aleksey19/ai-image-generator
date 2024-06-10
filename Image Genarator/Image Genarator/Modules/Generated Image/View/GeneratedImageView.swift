@@ -11,7 +11,7 @@ struct GeneratedImageView: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @StateObject var viewModel: CreateImageViewModel
+    @StateObject var viewModel: GeneratedImageViewModel
     
     var body: some View {
         NavigationStack {
@@ -60,6 +60,7 @@ struct GeneratedImageView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
+                        viewModel.saveToDB()
                         dismiss()
                     } label: {
                         Image(systemName: "xmark.circle.fill")

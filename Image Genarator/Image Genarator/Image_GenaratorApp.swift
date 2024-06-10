@@ -9,7 +9,8 @@ import SwiftUI
 
 @main
 struct Image_GenaratorApp: App {
-    //    let persistenceController = PersistenceController.shared
+    private let persistenceController = PersistenceController()
+    
     @StateObject private var appSession = AppSession.shared
     
 //    init() {
@@ -46,6 +47,8 @@ struct Image_GenaratorApp: App {
                     viewModel: .init(httpClient: appSession.openAIClient)
                 )
                 .environmentObject(appSession)
+                .environmentObject(persistenceController)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 //            ContentView()
                 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 

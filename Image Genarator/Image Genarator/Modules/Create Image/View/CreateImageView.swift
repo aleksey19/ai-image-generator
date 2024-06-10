@@ -12,6 +12,9 @@ struct CreateImageView: View {
     
     @StateObject var viewModel: CreateImageViewModel
     
+    @EnvironmentObject private var persistenceController: PersistenceController
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
     @State private var prompt: String = ""
     
     private var blurContent: Bool {
@@ -95,8 +98,11 @@ struct CreateImageView: View {
             presentImageSheet = newValue != nil
         }
         .sheet(isPresented: $presentImageSheet) {
-            if viewModel.imageUrl != nil {
-                GeneratedImageView(viewModel: viewModel)
+            if let persistenceController = viewModel.persistenceController,
+               let imageUrl = viewModel.imageUrl {
+                GeneratedImageView(
+                    viewModel: GeneratedImageViewModel(persistenceController: persistenceController, imageUrl: imageUrl, prompt: prompt)
+                )
             }
         }
         .sheet(isPresented: $presentImageStyleSheet) {

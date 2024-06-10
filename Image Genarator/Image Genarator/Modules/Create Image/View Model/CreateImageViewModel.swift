@@ -8,9 +8,10 @@
 import Foundation
 import SwiftUI
 
-class CreateImageViewModel: ObservableObject {
+final class CreateImageViewModel: ObservableObject {
     
     private weak var httpClient: HTTPClient?
+    private(set) weak var persistenceController: PersistenceController?
     
     @MainActor
     @Published private(set) var imageUrl: URL? = nil
@@ -81,5 +82,5 @@ class CreateImageViewModel: ObservableObject {
     @MainActor
     func cleanImage() {
         imageUrl = nil
-    }
+    }        
 }

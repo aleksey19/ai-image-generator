@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ContentView: View {
     
     @EnvironmentObject private var appSession: AppSession
+    @EnvironmentObject private var persistenceController: PersistenceController
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     private(set) var viewModel: CreateImageViewModel
     
@@ -33,6 +36,8 @@ struct ContentView: View {
                 Spacer()
                 
                 CreateImageView(viewModel: viewModel)
+                    .environmentObject(persistenceController)
+                    .environment(\.managedObjectContext, managedObjectContext)
                 
                 Spacer()
             }
