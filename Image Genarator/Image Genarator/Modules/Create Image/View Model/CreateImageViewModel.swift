@@ -11,7 +11,6 @@ import SwiftUI
 final class CreateImageViewModel: ObservableObject {
     
     private weak var httpClient: HTTPClient?
-    private(set) weak var persistenceController: PersistenceController?
     
     @MainActor
     @Published private(set) var imageUrl: URL? = nil

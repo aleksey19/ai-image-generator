@@ -10,6 +10,7 @@ import SwiftUI
 struct GeneratedImageView: View {
     
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var dataManager: StoredImagesDataManager
     
     @StateObject var viewModel: GeneratedImageViewModel
     
@@ -60,7 +61,7 @@ struct GeneratedImageView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        viewModel.saveToDB()
+                        dataManager.saveToDBImage(with: viewModel.imageUrl, prompt: viewModel.prompt)
                         dismiss()
                     } label: {
                         Image(systemName: "xmark.circle.fill")

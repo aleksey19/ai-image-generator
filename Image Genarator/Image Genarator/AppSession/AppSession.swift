@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 final class AppSession: ObservableObject {
     
@@ -24,6 +25,18 @@ final class AppSession: ObservableObject {
             }
         }
     )
+    
+    private var container: NSPersistentContainer =  {
+        let container = NSPersistentContainer(name: "Image_Genarator")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                debugPrint("Error while loading persistent store: \(error.localizedDescription)")
+            }
+        })
+        return container
+    }()
+    
+    lazy private(set) var imagesStorageDataManager: any StoredDataManager = StoredImagesDataManager(persistentContainer: container)
     
     @Published var connectionIsReachable: Bool = true
 }

@@ -13,6 +13,7 @@
 		A32E0A372C170F3100A9625C /* StoredImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32E0A362C170F3100A9625C /* StoredImagesView.swift */; };
 		A32E0A392C17117E00A9625C /* StoredImageItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32E0A382C17117E00A9625C /* StoredImageItemView.swift */; };
 		A32E0A3C2C17361200A9625C /* AppDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32E0A3B2C17361200A9625C /* AppDateFormatter.swift */; };
+		A32E0A3E2C1754E600A9625C /* PersistentContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32E0A3D2C1754E600A9625C /* PersistentContainerProtocol.swift */; };
 		A34B65C92BCFCCB800A4CD96 /* GeneratedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B65C82BCFCCB800A4CD96 /* GeneratedImageView.swift */; };
 		A34B65CB2BCFCCC400A4CD96 /* GeneratedImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B65CA2BCFCCC400A4CD96 /* GeneratedImageViewModel.swift */; };
 		A34B65CE2BCFE17400A4CD96 /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B65CD2BCFE17400A4CD96 /* OptionButton.swift */; };
@@ -25,7 +26,6 @@
 		A389DCAA2BA9F5540019D904 /* Image_GenaratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389DCA92BA9F5540019D904 /* Image_GenaratorApp.swift */; };
 		A389DCAE2BA9F5580019D904 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A389DCAD2BA9F5580019D904 /* Assets.xcassets */; };
 		A389DCB12BA9F5580019D904 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A389DCB02BA9F5580019D904 /* Preview Assets.xcassets */; };
-		A389DCB32BA9F5580019D904 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389DCB22BA9F5580019D904 /* Persistence.swift */; };
 		A389DCB62BA9F5580019D904 /* Image_Genarator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A389DCB42BA9F5580019D904 /* Image_Genarator.xcdatamodeld */; };
 		A389DCC02BA9F5590019D904 /* Image_GenaratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389DCBF2BA9F5590019D904 /* Image_GenaratorTests.swift */; };
 		A389DCCA2BA9F5590019D904 /* Image_GenaratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389DCC92BA9F5590019D904 /* Image_GenaratorUITests.swift */; };
@@ -86,6 +86,7 @@
 		A32E0A362C170F3100A9625C /* StoredImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredImagesView.swift; sourceTree = "<group>"; };
 		A32E0A382C17117E00A9625C /* StoredImageItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredImageItemView.swift; sourceTree = "<group>"; };
 		A32E0A3B2C17361200A9625C /* AppDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDateFormatter.swift; sourceTree = "<group>"; };
+		A32E0A3D2C1754E600A9625C /* PersistentContainerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainerProtocol.swift; sourceTree = "<group>"; };
 		A34B65C82BCFCCB800A4CD96 /* GeneratedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedImageView.swift; sourceTree = "<group>"; };
 		A34B65CA2BCFCCC400A4CD96 /* GeneratedImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedImageViewModel.swift; sourceTree = "<group>"; };
 		A34B65CD2BCFE17400A4CD96 /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
@@ -167,18 +168,19 @@
 		A32E0A2B2C16FBCD00A9625C /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				A32E0A2C2C16FBD300A9625C /* GeneratedImagesStorage */,
+				A32E0A3D2C1754E600A9625C /* PersistentContainerProtocol.swift */,
+				A32E0A2C2C16FBD300A9625C /* Stored Images Data Manager */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
 		};
-		A32E0A2C2C16FBD300A9625C /* GeneratedImagesStorage */ = {
+		A32E0A2C2C16FBD300A9625C /* Stored Images Data Manager */ = {
 			isa = PBXGroup;
 			children = (
 				A32E0A2F2C170C8E00A9625C /* StoredDataManager.swift */,
 				A32E0A2D2C16FBF900A9625C /* StoredImagesDataManager.swift */,
 			);
-			path = GeneratedImagesStorage;
+			path = "Stored Images Data Manager";
 			sourceTree = "<group>";
 		};
 		A32E0A312C170ED700A9625C /* Stored Images */ = {
@@ -755,6 +757,7 @@
 				A3A77E6A2BC6DAE800361F8F /* CreateImageViewModel.swift in Sources */,
 				A3DF392A2BCE9B0D003EAF23 /* UIApplication+EndEditing.swift in Sources */,
 				A34B65CE2BCFE17400A4CD96 /* OptionButton.swift in Sources */,
+				A32E0A3E2C1754E600A9625C /* PersistentContainerProtocol.swift in Sources */,
 				A32E0A3C2C17361200A9625C /* AppDateFormatter.swift in Sources */,
 				A3E4D8C52C16F76400738266 /* StoredImage+CoreDataProperties.swift in Sources */,
 				A3CC27262BAB39FF00571E5B /* APIUrls.swift in Sources */,
@@ -762,7 +765,6 @@
 				A3B4D5212BCD8F23007A6188 /* NetworkConnectionMonitor.swift in Sources */,
 				A3E4D8C62C16F76400738266 /* StoredImage+CoreDataClass.swift in Sources */,
 				A3655B992BAA05DC006C0025 /* AppSession.swift in Sources */,
-				A389DCB32BA9F5580019D904 /* Persistence.swift in Sources */,
 				A3B12EBB2BB19143009E4457 /* AppLogger.swift in Sources */,
 				A3BF9EB12BD0379B00B9F082 /* SheetViewRow.swift in Sources */,
 				A3DF39382BCEC7C8003EAF23 /* MainButton.swift in Sources */,
