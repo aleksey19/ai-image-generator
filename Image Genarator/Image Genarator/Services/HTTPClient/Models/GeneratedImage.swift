@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GeneratedImage {
+struct GeneratedImage: Equatable {
     let url: URL?
     let revisedPrompt: String?
     
