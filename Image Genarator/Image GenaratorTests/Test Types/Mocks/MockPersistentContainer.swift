@@ -12,9 +12,9 @@ class MockPersistentContainer: NSPersistentContainer {
     
     override init(name: String, managedObjectModel model: NSManagedObjectModel) {
         super.init(name: name, managedObjectModel: model)
-        let description = NSPersistentStoreDescription()
-        description.type = NSInMemoryStoreType
-        self.persistentStoreDescriptions = [description]
+//        let description = NSPersistentStoreDescription()
+//        description.type = NSInMemoryStoreType
+//        self.persistentStoreDescriptions = [description]
     }
     
     init() {

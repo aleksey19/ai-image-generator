@@ -41,6 +41,13 @@ struct Image_GenaratorApp: App {
     
     @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     
+    @Environment(\.managedObjectContext) var context
+    @FetchRequest(
+        sortDescriptors: [
+            SortDescriptor(\.timestamp, order: .reverse)
+        ]
+    ) var images: FetchedResults<StoredImage>
+    
     var blurContent: Bool {
         appSession.isLoadingNetworkData
     }
@@ -76,6 +83,13 @@ struct Image_GenaratorApp: App {
                         //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                         .tabItem {
                             Label("Main", systemImage: "paintbrush.pointed")
+                        }
+                        
+                        if !images.isEmpty {
+                            StoredImagesView()
+                                .tabItem {
+                                    Label("History", systemImage: "photo.on.rectangle.angled")
+                                }
                         }
                         
                         SettingsView()

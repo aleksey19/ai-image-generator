@@ -26,13 +26,18 @@ final class AppSession: ObservableObject {
     )
     
     private var container: NSPersistentContainer =  {
+        let description = NSPersistentStoreDescription()
+        description.type = NSSQLiteStoreType
         let container = NSPersistentContainer(name: "Image_Genarator")
+        container.persistentStoreDescriptions = [description]
         
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 debugPrint("Error while loading persistent store: \(error.localizedDescription)")
             }
         })
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        
         return container
     }()
     

@@ -9,23 +9,34 @@ import SwiftUI
 
 struct StoredImagesView: View {
     
-    @FetchRequest(sortDescriptors: []) private var images: FetchedResults<StoredImage>
+    @FetchRequest(
+        sortDescriptors: [
+            SortDescriptor(\.timestamp, order: .reverse)
+        ]
+    ) var images: FetchedResults<StoredImage>
     
     var body: some View {
-        List {
-            ForEach(images, id: \.self) { image in
-                NavigationLink {
-                    Text(image.prompt ?? "")
-                } label: {
-                    if let timestamp = image.timestamp,
-                       let prompt = image.prompt,
-                       let imageUrl = image.imageUrl {
-                        StoredImageItemView(timestamp: timestamp, prompt: prompt, imageUrl: imageUrl)
-                    } else {
-                        EmptyView()
+        ZStack {
+            Color.bg.edgesIgnoringSafeArea([.all])
+            
+            List {
+                ForEach(images, id: \.self) { image in
+                    NavigationLink {
+                        Text(image.prompt ?? "")
+                    } label: {
+                        if let timestamp = image.timestamp,
+                           let prompt = image.prompt,
+                           let imageUrl = image.imageUrl {
+                            StoredImageItemView(timestamp: timestamp, prompt: prompt, imageUrl: imageUrl)
+                        } else {
+                            EmptyView()
+                        }
                     }
                 }
+                .listRowBackground(Color.clear)
             }
+            .scrollContentBackground(.hidden)
+            .background(Color.bg)
         }
     }
 }
