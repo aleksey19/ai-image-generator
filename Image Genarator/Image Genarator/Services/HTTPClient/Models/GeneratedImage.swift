@@ -13,9 +13,13 @@ struct GeneratedImage: Equatable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let urlString = (try? container.decodeIfPresent(String.self, forKey: .url)) ?? ""
-        url = !urlString.isEmpty ? URL(string: urlString) : nil
-        revisedPrompt = try? container.decodeIfPresent(String.self, forKey: .revisedPrompt)
+        let urlString = try container.decode(String.self, forKey: .url)
+        
+        guard let url = URL(string: urlString)
+        else { throw AppError.server("Can't compose image url from string while decoding: \(urlString)") }
+        
+        self.url = url
+        self.revisedPrompt = try container.decode(String.self, forKey: .revisedPrompt)
     }
 }
 

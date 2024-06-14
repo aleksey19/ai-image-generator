@@ -20,7 +20,7 @@ extension StoredImage {
     @NSManaged public var imageUrl: URL?
     @NSManaged public var prompt: String?
     @NSManaged public var timestamp: Date?
-    @NSManaged public var uuid: UUID
+    @NSManaged public var uuid: String
 }
 
 extension StoredImage : Identifiable {

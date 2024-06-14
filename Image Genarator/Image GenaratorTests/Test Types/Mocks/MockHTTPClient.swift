@@ -73,8 +73,10 @@ final private class MockHTTPClient: HTTPClient {
     }
     
     func logRequest(_ request: URLRequest) { }
-    
     func logResponse(_ response: URLResponse?, data: Data?, error: Error?) { }
+    
+    func resetRetryConuter() { }
+    func decrementRetryConuter() { }
 }
 
 final private class MockHTTPClientFactory {

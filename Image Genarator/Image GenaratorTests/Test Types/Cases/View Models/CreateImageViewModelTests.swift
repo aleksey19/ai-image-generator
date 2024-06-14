@@ -14,7 +14,7 @@ final class CreateImageViewModelTests: XCTestCase {
     var sut: CreateImageViewModel!
     
     override func setUpWithError() throws {
-        sut = CreateImageViewModel(httpClient: nil)
+        sut = CreateImageViewModel(appSession: nil, httpClient: nil)
         try super.setUpWithError()
     }
 

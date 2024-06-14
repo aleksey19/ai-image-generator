@@ -5,6 +5,6 @@
         <attribute name="imageUrl" optional="YES" attributeType="URI"/>
         <attribute name="prompt" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="uuid" attributeType="String"/>
     </entity>
 </model>
