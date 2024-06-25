@@ -151,7 +151,11 @@ extension HTTPClient {
         }
         
         guard statusCode == 200 else {
-            throw AppError.server("Server error, code: \(statusCode)")
+            if let errorObject = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                throw AppError.server(errorObject.error.message)
+            } else {
+                throw AppError.server("Server error, code: \(statusCode)")
+            }
         }
         
         do {

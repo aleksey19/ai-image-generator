@@ -74,6 +74,7 @@
 		A3E3F8632C1B225400720F5D /* MockPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3F8622C1B225400720F5D /* MockPersistentContainer.swift */; };
 		A3E4D8C52C16F76400738266 /* StoredImage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E4D8C32C16F76400738266 /* StoredImage+CoreDataProperties.swift */; };
 		A3E4D8C62C16F76400738266 /* StoredImage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E4D8C42C16F76400738266 /* StoredImage+CoreDataClass.swift */; };
+		A3E82D902C2AD75F00644597 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E82D8F2C2AD75F00644597 /* ErrorResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +167,7 @@
 		A3E3F8622C1B225400720F5D /* MockPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPersistentContainer.swift; sourceTree = "<group>"; };
 		A3E4D8C32C16F76400738266 /* StoredImage+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoredImage+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3E4D8C42C16F76400738266 /* StoredImage+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoredImage+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A3E82D8F2C2AD75F00644597 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -595,6 +597,7 @@
 			isa = PBXGroup;
 			children = (
 				A3B12EC52BB1C083009E4457 /* CreateImageResponse.swift */,
+				A3E82D8F2C2AD75F00644597 /* ErrorResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -924,6 +927,7 @@
 				A3B12EC92BB1C0F0009E4457 /* GeneratedImage.swift in Sources */,
 				A32E0A352C170EF200A9625C /* StoredImagesViewModel.swift in Sources */,
 				A3B12EB02BB18660009E4457 /* HTTPClient.swift in Sources */,
+				A3E82D902C2AD75F00644597 /* ErrorResponse.swift in Sources */,
 				A3B12ED02BB1CD82009E4457 /* ContentView.swift in Sources */,
 				A3B12EB32BB18690009E4457 /* HTTPRequest.swift in Sources */,
 				A389DCAA2BA9F5540019D904 /* Image_GenaratorApp.swift in Sources */,
