@@ -12,6 +12,7 @@ final class CreateImageViewModel: ObservableObject {
     
     private weak var appSession: AppSession?
     private weak var httpClient: HTTPClient?
+    private weak var storedImagesManager: StoredImagesDataManager?
     
     @MainActor
     @Published private(set) var imageUrl: URL? = nil
@@ -31,15 +32,17 @@ final class CreateImageViewModel: ObservableObject {
     // MARK: - Image parameters
     
     @Published var imageStyle: String = ""
-//    @Published var imageSize: String?
-//    @Published var imageGenerationSource: String?
+    //    @Published var imageSize: String?
+    //    @Published var imageGenerationSource: String?
     
     // MARK: - Init
     
-    init(appSession: AppSession?,
-         httpClient: HTTPClient?) {
+    init(appSession: AppSession,
+         httpClient: HTTPClient,
+         storedImagesManager: StoredImagesDataManager) {
         self.appSession = appSession
         self.httpClient = httpClient
+        self.storedImagesManager = storedImagesManager
     }
     
     // MARK: - Requests
@@ -52,30 +55,30 @@ final class CreateImageViewModel: ObservableObject {
             appSession?.isLoadingNetworkData = true
         }
         
-        try? await Task.sleep(nanoseconds: 2_000_000_000)
+        //        try? await Task.sleep(nanoseconds: 2_000_000_000)
         
-        await MainActor.run(body: {
-            imageUrl = URL(string: "https://www.atlasandboots.com/wp-content/uploads/2019/05/ama-dablam2-most-beautiful-mountains-in-the-world.jpg")
-            //            error = .server("Can't generate image. Please try again later or change the prompt")
-        })
+        //        await MainActor.run(body: {
+        //            imageUrl = URL(string: "https://www.atlasandboots.com/wp-content/uploads/2019/05/ama-dablam2-most-beautiful-mountains-in-the-world.jpg")
+        //            //            error = .server("Can't generate image. Please try again later or change the prompt")
+        //        })
         
         let body = CreateImageRequestBody(prompt: prompt, model: nil, n: nil, size: nil, style: nil)
         let request = CreateImageRequest(body: body)
         
-//        do {
-//            let response: CreateImageResponse? = try await httpClient?.execute(request)
-//
-//            if let urlString = response?.data.first?.url,
-//               let url = URL(string: urlString) {
-//                await MainActor.run(body: {
-//                    imageUrl = url
-//                })
-//            }
-//        } catch {
-//            await MainActor.run {
-//                self.error = .server(error.localizedDescription)
-//            }
-//        }
+        do {
+            let response: CreateImageResponse? = try await httpClient?.execute(request)
+            
+            if let url = response?.data.first?.url {
+                await MainActor.run(body: {
+                    imageUrl = url
+                })
+                storedImagesManager?.saveToDBImage(with: url, prompt: prompt)
+            }
+        } catch {
+            await MainActor.run {
+                self.error = .server(error.localizedDescription)
+            }
+        }
         
         await MainActor.run(body: {
             showLoading.toggle()
@@ -86,5 +89,5 @@ final class CreateImageViewModel: ObservableObject {
     @MainActor
     func cleanImage() {
         imageUrl = nil
-    }        
+    }
 }

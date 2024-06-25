@@ -41,7 +41,7 @@ final class AppSession: ObservableObject {
         return container
     }()
     
-    lazy private(set) var imagesStorageDataManager: any StoredDataManager = StoredImagesDataManager(persistentContainer: container)
+    lazy private(set) var imagesStorageDataManager = StoredImagesDataManager(persistentContainer: container)
     
     @Published var connectionIsReachable: Bool = true
     @Published var isLoadingNetworkData: Bool = false
