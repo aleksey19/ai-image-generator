@@ -46,7 +46,8 @@ struct GeneratedImageView: View {
                     
                     HStack(alignment: .center) {
                         MainButton(enabled: .constant(true), foregroundColor: .buttonTitle2, backgroundColor: .button2, title: "Save") {
-//                            dataManager.saveToDBImage(with: viewModel.imageUrl, prompt: viewModel.prompt)
+                            viewModel.saveImageToDB()
+                            dismiss()
                         }
 
                         MainButton(enabled: .constant(true), foregroundColor: .buttonTitle2, backgroundColor: .button2, title: "Share") {

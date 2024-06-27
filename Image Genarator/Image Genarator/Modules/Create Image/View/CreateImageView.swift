@@ -92,7 +92,7 @@ struct CreateImageView: View {
         .sheet(isPresented: $presentImageSheet) {
             if let imageUrl = viewModel.imageUrl {
                 GeneratedImageView(
-                    viewModel: GeneratedImageViewModel(imageUrl: imageUrl, prompt: prompt)
+                    viewModel: GeneratedImageViewModel(imageUrl: imageUrl, prompt: prompt, storedImagesManager: viewModel.storedImagesManager)
                 )
             }
         }

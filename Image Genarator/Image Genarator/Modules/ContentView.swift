@@ -10,35 +10,68 @@ import CoreData
 
 struct ContentView: View {
     
+    @Environment(\.managedObjectContext) var moc
     @EnvironmentObject private var appSession: AppSession
     
-    private(set) var viewModel: CreateImageViewModel
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
+    
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.timestamp, order: .reverse)])
+    private var images: FetchedResults<StoredImage>
+    
+    var blurContent: Bool {
+        appSession.isLoadingNetworkData
+    }
     
     var body: some View {
-        ZStack {
-            Color.bg.ignoresSafeArea()
+        VStack {
+            if appSession.connectionIsReachable == false {
+                Label("No internet", systemImage: "wifi.slash")
+                    .font(.caption)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.white)
+                    .frame(width: UIScreen.main.bounds.size.width)
+                    .padding(5)
+                    .background(Color.red)
+                    .animation(.default, value: appSession.connectionIsReachable)
+                    .padding(.top)
+            }
             
+            Spacer()
             
-            VStack {
-                if appSession.connectionIsReachable == false {
-                    Label("No internet", systemImage: "wifi.slash")
-                        .font(.caption)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.white)
-                        .frame(width: UIScreen.main.bounds.size.width)
-                        .padding(5)
-                        .background(Color.red)
-                        .animation(.default, value: appSession.connectionIsReachable)
-                        .padding(.top)
+            TabView {
+                CreateImageView(
+                    viewModel: .init(
+                        appSession: appSession,
+                        generationModel: OpenAIGenerationModel(httpClient: appSession.openAIHTTPClient),
+                        storedImagesManager: appSession.imagesStorageDataManager
+                    )
+                )
+                .preferredColorScheme(isDarkMode ? .dark : .light)
+                .environmentObject(appSession)
+                .tabItem {
+                    Label("Main", systemImage: "paintbrush.pointed")
                 }
                 
-                Spacer()
+                if !images.isEmpty {
+                    StoredImagesView()
+                        .tabItem {
+                            Label("History", systemImage: "photo.on.rectangle.angled")
+                        }
+                }
                 
-                CreateImageView(viewModel: viewModel)
-                
-                Spacer()
+                SettingsView()
+                    .preferredColorScheme(isDarkMode ? .dark : .light)
+                    .tabItem {
+                        Label("Settings", systemImage: "gearshape")
+                    }
             }
+            .tint(Color.textMain)
         }
+        .blur(radius: blurContent ? 3 : 0)
         
+        if appSession.isLoadingNetworkData {
+            LoadingView()
+                .animation(.default, value: appSession.isLoadingNetworkData)
+        }
     }
 }

@@ -12,7 +12,7 @@ final class CreateImageViewModel: ObservableObject {
     
     private weak var appSession: AppSession?
     private var generationModel: AIGenerationModel
-    private unowned var storedImagesManager: StoredImagesDataManager
+    private(set) unowned var storedImagesManager: StoredImagesDataManager
     
     @MainActor
     @Published private(set) var imageUrl: URL? = nil

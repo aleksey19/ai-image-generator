@@ -13,6 +13,9 @@ final class StoredImagesDataManager: StoredDataManager, ObservableObject {
     
     private(set) weak var persistentContainer: NSPersistentContainer?
     private(set) var context: NSManagedObjectContext
+    var viewContext: NSManagedObjectContext? {
+        persistentContainer?.viewContext
+    }
     
     @Published private(set) var items: [StoredImage] = []
     
@@ -36,11 +39,7 @@ final class StoredImagesDataManager: StoredDataManager, ObservableObject {
     
     func deleteImage(_ image: StoredImage) {
         context.delete(image)
-        do {
-            try context.save()
-        } catch {
-            debugPrint("\(error.localizedDescription)")
-        }
+        saveContext()
     }
     
     func deleteImageByUUID(with uuid: String) {
@@ -50,7 +49,7 @@ final class StoredImagesDataManager: StoredDataManager, ObservableObject {
         do {
             if let image = try context.fetch(request).first {
                 context.delete(image)
-                try context.save()
+                saveContext()
             }
         } catch {
             debugPrint("\(error.localizedDescription)")
@@ -67,10 +66,18 @@ final class StoredImagesDataManager: StoredDataManager, ObservableObject {
         model.prompt = prompt
         model.imageUrl = imageUrl
         
-        do {
-            try context.save()
-        } catch {
-            debugPrint("\(error.localizedDescription)")
+        saveContext()
+    }
+    
+    // MARK: - Save context
+    
+    private func saveContext() {
+        if context.hasChanges == true {
+            do {
+                try context.save()
+            } catch {
+                print(error)
+            }
         }
     }
 }

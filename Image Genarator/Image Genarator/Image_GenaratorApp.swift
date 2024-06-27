@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct Image_GenaratorApp: App {
-    //    let persistenceController = PersistenceController.shared
+    
     @StateObject private var appSession = AppSession()
     
     //    init() {
@@ -39,18 +39,7 @@ struct Image_GenaratorApp: App {
     //        UINavigationBar.appearance().tintColor = UIColor(named: "bg")
     //    }
     
-    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     
-    @Environment(\.managedObjectContext) var context
-    @FetchRequest(
-        sortDescriptors: [
-            SortDescriptor(\.timestamp, order: .reverse)
-        ]
-    ) var images: FetchedResults<StoredImage>
-    
-    var blurContent: Bool {
-        appSession.isLoadingNetworkData
-    }
     
     var body: some Scene {
         WindowGroup {
@@ -58,58 +47,9 @@ struct Image_GenaratorApp: App {
             ZStack {
                 Color.bg.ignoresSafeArea(.all)
                 
-                VStack {
-                    if appSession.connectionIsReachable == false {
-                        Label("No internet", systemImage: "wifi.slash")
-                            .font(.caption)
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.white)
-                            .frame(width: UIScreen.main.bounds.size.width)
-                            .padding(5)
-                            .background(Color.red)
-                            .animation(.default, value: appSession.connectionIsReachable)
-                            .padding(.top)
-                    }
-                    
-                    Spacer()
-                    
-                    TabView {
-                        CreateImageView(
-                            viewModel: .init(
-                                appSession: appSession,
-                                generationModel: OpenAIGenerationModel(httpClient: appSession.openAIHTTPClient),
-                                storedImagesManager: appSession.imagesStorageDataManager
-                            )
-                        )
-                        .preferredColorScheme(isDarkMode ? .dark : .light)
-                        .environmentObject(appSession)
-                        //            ContentView()
-                        //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                        .tabItem {
-                            Label("Main", systemImage: "paintbrush.pointed")
-                        }
-                        
-                        if !images.isEmpty {
-                            StoredImagesView()
-                                .tabItem {
-                                    Label("History", systemImage: "photo.on.rectangle.angled")
-                                }
-                        }
-                        
-                        SettingsView()
-                            .preferredColorScheme(isDarkMode ? .dark : .light)
-                            .tabItem {
-                                Label("Settings", systemImage: "gearshape")
-                            }
-                    }
-                    .tint(Color.textMain)
-                }
-                .blur(radius: blurContent ? 3 : 0)
-                
-                if appSession.isLoadingNetworkData {
-                    LoadingView()
-                        .animation(.default, value: appSession.isLoadingNetworkData)
-                }
+                ContentView()
+                    .environment(\.managedObjectContext, appSession.imagesStorageDataManager.viewContext!)
+                    .environmentObject(appSession)
             }
         }
     }

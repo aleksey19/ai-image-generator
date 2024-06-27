@@ -41,14 +41,7 @@ final class AppSession: ObservableObject {
     )
     
     private var container: NSPersistentContainer =  {
-        let modelUrl = Bundle.main.url(forResource: "Image_Genarator", withExtension: "momd")!
-        let managedObjectModel = NSManagedObjectModel.init(contentsOf: modelUrl)!
-        let container = NSPersistentContainer(name: "Image_Genarator", managedObjectModel: managedObjectModel)
-        
-        let description = NSPersistentStoreDescription()
-        description.type = NSInMemoryStoreType
-        container.persistentStoreDescriptions = [description]
-        
+        let container = NSPersistentContainer(name: "Image_Genarator")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 debugPrint("Error while loading persistent store: \(error.localizedDescription)")
