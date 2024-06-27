@@ -55,26 +55,26 @@ final class CreateImageViewModel: ObservableObject {
             appSession?.isLoadingNetworkData = true
         }
         
-        //        try? await Task.sleep(nanoseconds: 2_000_000_000)
+        try? await Task.sleep(nanoseconds: 2_000_000_000)
         
-        //        await MainActor.run(body: {
-        //            imageUrl = URL(string: "https://www.atlasandboots.com/wp-content/uploads/2019/05/ama-dablam2-most-beautiful-mountains-in-the-world.jpg")
-        //            //            error = .server("Can't generate image. Please try again later or change the prompt")
-        //        })
+        await MainActor.run(body: {
+            imageUrl = URL(string: "https://www.atlasandboots.com/wp-content/uploads/2019/05/ama-dablam2-most-beautiful-mountains-in-the-world.jpg")
+            //            error = .server("Can't generate image. Please try again later or change the prompt")
+        })
         
-        do {
-            let image = try await generationModel.generateImage(prompt: prompt)
-            if let url = image.url {
-                await MainActor.run(body: {
-                    imageUrl = url
-                })
-                storedImagesManager.saveToDBImage(with: url, prompt: prompt)
-            }
-        } catch {
-            await MainActor.run {
-                self.error = .server(error.localizedDescription)
-            }
-        }
+//        do {
+//            let image = try await generationModel.generateImage(prompt: prompt)
+//            if let url = image.url {
+//                await MainActor.run(body: {
+//                    imageUrl = url
+//                })
+//                storedImagesManager.saveToDBImage(with: url, prompt: prompt)
+//            }
+//        } catch {
+//            await MainActor.run {
+//                self.error = .server(error.localizedDescription)
+//            }
+//        }
         
         await MainActor.run(body: {
             showLoading.toggle()
