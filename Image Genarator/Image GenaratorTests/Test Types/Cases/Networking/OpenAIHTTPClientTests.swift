@@ -43,7 +43,7 @@ final class OpenAIHTTPClientTests: XCTestCase {
         statusCode: Int = 200,
         data: Data? = nil,
         error: Error? = nil
-    ) async throws -> CreateImageResponse {
+    ) async throws -> OpenAICreateImageResponse {
         let response = HTTPURLResponse(url: URL(string: sut.host!)!,
                                        statusCode: statusCode,
                                        httpVersion: nil,
@@ -51,7 +51,7 @@ final class OpenAIHTTPClientTests: XCTestCase {
         session.set(urlResponse: response,
                     responseData: data,
                     error: error)
-        let request = CreateImageRequest()
+        let request = OpenAICreateImageRequest()
         return try await sut.execute(request)
     }
     
@@ -123,7 +123,7 @@ final class OpenAIHTTPClientTests: XCTestCase {
         // Set host to nil to provoke throwing an error when composing an URLRequest
         sut.host = nil
         
-        await XCTAssertThrowsError_Async(try await sut.execute(request, responseType: CreateImageResponse.self))
+        await XCTAssertThrowsError_Async(try await sut.execute(request, responseType: OpenAICreateImageResponse.self))
     }
     
     func test_OpenAIClient_whenCantDecodeJSON_throwsDecodingError() async throws {
@@ -140,7 +140,7 @@ final class OpenAIHTTPClientTests: XCTestCase {
         // given
         let data = try Data.fromJSON(fileName: "CreateImageResponse")
         let decoder = JSONDecoder()
-        let givenResponse = try decoder.decode(CreateImageResponse.self, from: data)
+        let givenResponse = try decoder.decode(OpenAICreateImageResponse.self, from: data)
         
         do {
             let response = try await whenExecuteCreateImageRequest(data: data)

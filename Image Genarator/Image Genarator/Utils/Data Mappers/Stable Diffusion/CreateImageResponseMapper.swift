@@ -12,4 +12,9 @@ final class CreateImageResponseMapper {
         let url = URL(string: response.output.first ?? "")
         return GeneratedImage(url: url, prompt: response.meta.prompt)
     }
+    
+    static func map(response: OpenAICreateImageResponse) -> GeneratedImage {
+        let data = response.data.first
+        return GeneratedImage(url: data?.url, prompt: data?.revisedPrompt)
+    }
 }

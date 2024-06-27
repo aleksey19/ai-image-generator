@@ -50,10 +50,9 @@
 		A3B12EB72BB18B2B009E4457 /* ExtendedLocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B12EB62BB18B2B009E4457 /* ExtendedLocalizedError.swift */; };
 		A3B12EBB2BB19143009E4457 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B12EBA2BB19143009E4457 /* AppLogger.swift */; };
 		A3B12EBD2BB1917C009E4457 /* Logable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B12EBC2BB1917C009E4457 /* Logable.swift */; };
-		A3B12EC42BB1BFE1009E4457 /* CreateImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B12EC32BB1BFE1009E4457 /* CreateImageRequest.swift */; };
-		A3B12EC62BB1C083009E4457 /* CreateImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B12EC52BB1C083009E4457 /* CreateImageResponse.swift */; };
-		A3B12EC92BB1C0F0009E4457 /* GeneratedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B12EC82BB1C0F0009E4457 /* GeneratedImage.swift */; };
-		A3B12ECB2BB1C791009E4457 /* CreateImageRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B12ECA2BB1C791009E4457 /* CreateImageRequestBody.swift */; };
+		A3B12EC42BB1BFE1009E4457 /* OpenAICreateImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B12EC32BB1BFE1009E4457 /* OpenAICreateImageRequest.swift */; };
+		A3B12EC62BB1C083009E4457 /* OpenAICreateImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B12EC52BB1C083009E4457 /* OpenAICreateImageResponse.swift */; };
+		A3B12ECB2BB1C791009E4457 /* OpenAICreateImageRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B12ECA2BB1C791009E4457 /* OpenAICreateImageRequestBody.swift */; };
 		A3B12ED02BB1CD82009E4457 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B12ECF2BB1CD82009E4457 /* ContentView.swift */; };
 		A3B12ED12BB1CDC6009E4457 /* CreateImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B12ECD2BB1CB89009E4457 /* CreateImageView.swift */; };
 		A3B4D5212BCD8F23007A6188 /* NetworkConnectionMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4D5202BCD8F23007A6188 /* NetworkConnectionMonitor.swift */; };
@@ -69,7 +68,8 @@
 		A3CEFD462C2B01A200F9A11B /* StableDiffusionCreateImageRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEFD452C2B01A200F9A11B /* StableDiffusionCreateImageRequestBody.swift */; };
 		A3CEFD482C2B02C200F9A11B /* StableDiffusionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEFD472C2B02C200F9A11B /* StableDiffusionHTTPClient.swift */; };
 		A3CEFD4C2C2B03D600F9A11B /* StableDiffusionCreateImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEFD4B2C2B03B600F9A11B /* StableDiffusionCreateImageResponse.swift */; };
-		A3CEFD502C2B0A8F00F9A11B /* StableDiffusionResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEFD4F2C2B0A8F00F9A11B /* StableDiffusionResponseMapper.swift */; };
+		A3CEFD502C2B0A8F00F9A11B /* CreateImageResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEFD4F2C2B0A8F00F9A11B /* CreateImageResponseMapper.swift */; };
+		A3D247362C2D5E8A00CE31C9 /* GeneratedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D247352C2D5E8900CE31C9 /* GeneratedImage.swift */; };
 		A3DF39272BCE9A66003EAF23 /* View+DismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DF39262BCE9A66003EAF23 /* View+DismissKeyboard.swift */; };
 		A3DF392A2BCE9B0D003EAF23 /* UIApplication+EndEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DF39292BCE9B0D003EAF23 /* UIApplication+EndEditing.swift */; };
 		A3DF39332BCEA6B0003EAF23 /* Color+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DF39322BCEA6B0003EAF23 /* Color+Custom.swift */; };
@@ -151,10 +151,9 @@
 		A3B12EB62BB18B2B009E4457 /* ExtendedLocalizedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedLocalizedError.swift; sourceTree = "<group>"; };
 		A3B12EBA2BB19143009E4457 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		A3B12EBC2BB1917C009E4457 /* Logable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logable.swift; sourceTree = "<group>"; };
-		A3B12EC32BB1BFE1009E4457 /* CreateImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateImageRequest.swift; sourceTree = "<group>"; };
-		A3B12EC52BB1C083009E4457 /* CreateImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateImageResponse.swift; sourceTree = "<group>"; };
-		A3B12EC82BB1C0F0009E4457 /* GeneratedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedImage.swift; sourceTree = "<group>"; };
-		A3B12ECA2BB1C791009E4457 /* CreateImageRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateImageRequestBody.swift; sourceTree = "<group>"; };
+		A3B12EC32BB1BFE1009E4457 /* OpenAICreateImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAICreateImageRequest.swift; sourceTree = "<group>"; };
+		A3B12EC52BB1C083009E4457 /* OpenAICreateImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAICreateImageResponse.swift; sourceTree = "<group>"; };
+		A3B12ECA2BB1C791009E4457 /* OpenAICreateImageRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAICreateImageRequestBody.swift; sourceTree = "<group>"; };
 		A3B12ECD2BB1CB89009E4457 /* CreateImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateImageView.swift; sourceTree = "<group>"; };
 		A3B12ECF2BB1CD82009E4457 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A3B4D5202BCD8F23007A6188 /* NetworkConnectionMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionMonitor.swift; sourceTree = "<group>"; };
@@ -170,7 +169,8 @@
 		A3CEFD452C2B01A200F9A11B /* StableDiffusionCreateImageRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableDiffusionCreateImageRequestBody.swift; sourceTree = "<group>"; };
 		A3CEFD472C2B02C200F9A11B /* StableDiffusionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableDiffusionHTTPClient.swift; sourceTree = "<group>"; };
 		A3CEFD4B2C2B03B600F9A11B /* StableDiffusionCreateImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableDiffusionCreateImageResponse.swift; sourceTree = "<group>"; };
-		A3CEFD4F2C2B0A8F00F9A11B /* StableDiffusionResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableDiffusionResponseMapper.swift; sourceTree = "<group>"; };
+		A3CEFD4F2C2B0A8F00F9A11B /* CreateImageResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateImageResponseMapper.swift; sourceTree = "<group>"; };
+		A3D247352C2D5E8900CE31C9 /* GeneratedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedImage.swift; sourceTree = "<group>"; };
 		A3DF39262BCE9A66003EAF23 /* View+DismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+DismissKeyboard.swift"; sourceTree = "<group>"; };
 		A3DF39292BCE9B0D003EAF23 /* UIApplication+EndEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+EndEditing.swift"; sourceTree = "<group>"; };
 		A3DF39322BCEA6B0003EAF23 /* Color+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Custom.swift"; sourceTree = "<group>"; };
@@ -565,6 +565,7 @@
 		A3B12EB42BB18AD4009E4457 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A3D247372C2D5EC500CE31C9 /* Models */,
 				A3CEFD4D2C2B0A6600F9A11B /* Data Mappers */,
 				A32E0A3A2C17360000A9625C /* Date Formatter */,
 				A3DF39242BCE9A3B003EAF23 /* Extensions */,
@@ -624,7 +625,6 @@
 		A3B12EC72BB1C0E8009E4457 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A3B12EC82BB1C0F0009E4457 /* GeneratedImage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -700,8 +700,8 @@
 		A3CEFD412C2B008000F9A11B /* OpenAI */ = {
 			isa = PBXGroup;
 			children = (
-				A3B12EC32BB1BFE1009E4457 /* CreateImageRequest.swift */,
-				A3B12ECA2BB1C791009E4457 /* CreateImageRequestBody.swift */,
+				A3B12EC32BB1BFE1009E4457 /* OpenAICreateImageRequest.swift */,
+				A3B12ECA2BB1C791009E4457 /* OpenAICreateImageRequestBody.swift */,
 			);
 			path = OpenAI;
 			sourceTree = "<group>";
@@ -718,7 +718,7 @@
 		A3CEFD492C2B039900F9A11B /* OpenAI */ = {
 			isa = PBXGroup;
 			children = (
-				A3B12EC52BB1C083009E4457 /* CreateImageResponse.swift */,
+				A3B12EC52BB1C083009E4457 /* OpenAICreateImageResponse.swift */,
 			);
 			path = OpenAI;
 			sourceTree = "<group>";
@@ -742,9 +742,17 @@
 		A3CEFD4E2C2B0A7800F9A11B /* Stable Diffusion */ = {
 			isa = PBXGroup;
 			children = (
-				A3CEFD4F2C2B0A8F00F9A11B /* StableDiffusionResponseMapper.swift */,
+				A3CEFD4F2C2B0A8F00F9A11B /* CreateImageResponseMapper.swift */,
 			);
 			path = "Stable Diffusion";
+			sourceTree = "<group>";
+		};
+		A3D247372C2D5EC500CE31C9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A3D247352C2D5E8900CE31C9 /* GeneratedImage.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A3DF39242BCE9A3B003EAF23 /* Extensions */ = {
@@ -1006,7 +1014,7 @@
 				A3CEFD482C2B02C200F9A11B /* StableDiffusionHTTPClient.swift in Sources */,
 				A3B12EB72BB18B2B009E4457 /* ExtendedLocalizedError.swift in Sources */,
 				A32E0A372C170F3100A9625C /* StoredImagesView.swift in Sources */,
-				A3B12EC42BB1BFE1009E4457 /* CreateImageRequest.swift in Sources */,
+				A3B12EC42BB1BFE1009E4457 /* OpenAICreateImageRequest.swift in Sources */,
 				A32E0A302C170C8E00A9625C /* StoredDataManager.swift in Sources */,
 				A34B65C92BCFCCB800A4CD96 /* GeneratedImageView.swift in Sources */,
 				A3DF39332BCEA6B0003EAF23 /* Color+Custom.swift in Sources */,
@@ -1021,12 +1029,11 @@
 				A3DF39362BCEC299003EAF23 /* CTAButtonStyle.swift in Sources */,
 				A3CEFD442C2B017600F9A11B /* StableDiffusionCreateImageRequest.swift in Sources */,
 				A389DCB62BA9F5580019D904 /* Image_Genarator.xcdatamodeld in Sources */,
-				A3B12ECB2BB1C791009E4457 /* CreateImageRequestBody.swift in Sources */,
+				A3B12ECB2BB1C791009E4457 /* OpenAICreateImageRequestBody.swift in Sources */,
 				A3CC271C2BAAF52A00571E5B /* ConfigLoader.swift in Sources */,
-				A3B12EC62BB1C083009E4457 /* CreateImageResponse.swift in Sources */,
+				A3B12EC62BB1C083009E4457 /* OpenAICreateImageResponse.swift in Sources */,
 				A3624E662BC7DC7500035098 /* LoadingView.swift in Sources */,
 				A3DF39272BCE9A66003EAF23 /* View+DismissKeyboard.swift in Sources */,
-				A3B12EC92BB1C0F0009E4457 /* GeneratedImage.swift in Sources */,
 				A32E0A352C170EF200A9625C /* StoredImagesViewModel.swift in Sources */,
 				A3B12EB02BB18660009E4457 /* HTTPClient.swift in Sources */,
 				A3E82D902C2AD75F00644597 /* ErrorResponse.swift in Sources */,
@@ -1034,9 +1041,10 @@
 				A3B12EB32BB18690009E4457 /* HTTPRequest.swift in Sources */,
 				A389DCAA2BA9F5540019D904 /* Image_GenaratorApp.swift in Sources */,
 				A30FE2B22C0734EE009341A1 /* URLSessionProtocol.swift in Sources */,
+				A3D247362C2D5E8A00CE31C9 /* GeneratedImage.swift in Sources */,
 				A3B12ED12BB1CDC6009E4457 /* CreateImageView.swift in Sources */,
 				A30FE2B02C072982009341A1 /* StringOptional+NotEmpty.swift in Sources */,
-				A3CEFD502C2B0A8F00F9A11B /* StableDiffusionResponseMapper.swift in Sources */,
+				A3CEFD502C2B0A8F00F9A11B /* CreateImageResponseMapper.swift in Sources */,
 				A3CEFD402C2AFF2900F9A11B /* OpenAIGenerationModel.swift in Sources */,
 				A34B65CB2BCFCCC400A4CD96 /* GeneratedImageViewModel.swift in Sources */,
 				A3E299162C13487A007F22F7 /* SettingsView.swift in Sources */,

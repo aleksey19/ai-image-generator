@@ -23,6 +23,6 @@ final class StableDiffusionModel: AIGenerationModel {
         let body = StableDiffusionCreateImageRequestBody(key: APIUrls.stableDiffusionAccessToken, prompt: prompt)
         let request = StableDiffusionCreateImageRequest(body: body)
         let response: StableDiffusionCreateImageResponse = try await httpClient.execute(request)
-        return StableDiffusionResponseMapper.map(response: response)
+        return CreateImageResponseMapper.map(response: response)
     }
 }

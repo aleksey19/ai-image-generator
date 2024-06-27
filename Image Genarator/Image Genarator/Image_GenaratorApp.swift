@@ -76,7 +76,9 @@ struct Image_GenaratorApp: App {
                     TabView {
                         CreateImageView(
                             viewModel: .init(
-                                appSession: appSession, httpClient: appSession.openAIClient, storedImagesManager: appSession.imagesStorageDataManager
+                                appSession: appSession,
+                                generationModel: OpenAIGenerationModel(httpClient: appSession.openAIHTTPClient),
+                                storedImagesManager: appSession.imagesStorageDataManager
                             )
                         )
                         .preferredColorScheme(isDarkMode ? .dark : .light)
