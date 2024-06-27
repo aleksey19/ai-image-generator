@@ -9,6 +9,7 @@ import Foundation
 
 protocol Logable {
     func log(error: Error)
+    func log(error: String)
     func log(info: String)
     func log(warning: String)
 }

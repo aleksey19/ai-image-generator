@@ -161,11 +161,17 @@ extension HTTPClient {
         do {
             let object = try JSONDecoder().decode(T.self, from: data)
             return object
+        } catch DecodingError.dataCorrupted(let context) {
+            let error = context.debugDescription
+            AppLogger.shared.log(error: error)
+            throw AppError.decoding(error)
+        } catch DecodingError.keyNotFound(_, let context),
+                DecodingError.typeMismatch(_, let context),
+                DecodingError.valueNotFound(_, let context) {
+            let error = context.debugDescription
+            AppLogger.shared.log(error: error)
+            throw AppError.decoding(error)
         }
-//        catch let error as DecodingError {
-//            AppLogger.shared.log(error: error)
-//            throw AppError.decoding(error)
-//        }
         catch {
             AppLogger.shared.log(error: error)
             throw error

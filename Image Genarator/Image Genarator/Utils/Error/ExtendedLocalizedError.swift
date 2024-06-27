@@ -15,6 +15,7 @@ enum AppError {
     case develop(String)
     case server(String)
     case navigation(String)
+    case decoding(String)
 }
 
 extension AppError: ExtendedLocalizedError {

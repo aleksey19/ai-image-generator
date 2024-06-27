@@ -18,6 +18,10 @@ extension AppLogger: Logable {
         debugPrint("🚫 Error: \(error)")
     }
     
+    func log(error: String) {
+        debugPrint("🚫 Error: \(error)")
+    }
+    
     func log(info: String) {
         debugPrint("🗒 Info: \(info)")
     }
