@@ -25,6 +25,6 @@ final class AppSessionTests: XCTestCase {
     // MARK: - Properties
     
     func testAppSession_whenInitialised_nonNilOpenAIClient() {
-        XCTAssertNotNil(sut.openAIClient)
+        XCTAssertNotNil(sut.openAIHTTPClient)
     }
 }

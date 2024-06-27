@@ -62,6 +62,14 @@
 		A3CC271C2BAAF52A00571E5B /* ConfigLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC271B2BAAF52A00571E5B /* ConfigLoader.swift */; };
 		A3CC271E2BAB365B00571E5B /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3CC271D2BAB365B00571E5B /* Config.plist */; };
 		A3CC27262BAB39FF00571E5B /* APIUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC27242BAB39C900571E5B /* APIUrls.swift */; };
+		A3CEFD3C2C2AFD7C00F9A11B /* AIGenerationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEFD3B2C2AFD7C00F9A11B /* AIGenerationModel.swift */; };
+		A3CEFD3E2C2AFE1700F9A11B /* StableDiffusionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEFD3D2C2AFE1700F9A11B /* StableDiffusionModel.swift */; };
+		A3CEFD402C2AFF2900F9A11B /* OpenAIGenerationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEFD3F2C2AFF2900F9A11B /* OpenAIGenerationModel.swift */; };
+		A3CEFD442C2B017600F9A11B /* StableDiffusionCreateImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEFD432C2B017600F9A11B /* StableDiffusionCreateImageRequest.swift */; };
+		A3CEFD462C2B01A200F9A11B /* StableDiffusionCreateImageRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEFD452C2B01A200F9A11B /* StableDiffusionCreateImageRequestBody.swift */; };
+		A3CEFD482C2B02C200F9A11B /* StableDiffusionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEFD472C2B02C200F9A11B /* StableDiffusionHTTPClient.swift */; };
+		A3CEFD4C2C2B03D600F9A11B /* StableDiffusionCreateImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEFD4B2C2B03B600F9A11B /* StableDiffusionCreateImageResponse.swift */; };
+		A3CEFD502C2B0A8F00F9A11B /* StableDiffusionResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEFD4F2C2B0A8F00F9A11B /* StableDiffusionResponseMapper.swift */; };
 		A3DF39272BCE9A66003EAF23 /* View+DismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DF39262BCE9A66003EAF23 /* View+DismissKeyboard.swift */; };
 		A3DF392A2BCE9B0D003EAF23 /* UIApplication+EndEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DF39292BCE9B0D003EAF23 /* UIApplication+EndEditing.swift */; };
 		A3DF39332BCEA6B0003EAF23 /* Color+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DF39322BCEA6B0003EAF23 /* Color+Custom.swift */; };
@@ -155,6 +163,14 @@
 		A3CC271B2BAAF52A00571E5B /* ConfigLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigLoader.swift; sourceTree = "<group>"; };
 		A3CC271D2BAB365B00571E5B /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		A3CC27242BAB39C900571E5B /* APIUrls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIUrls.swift; sourceTree = "<group>"; };
+		A3CEFD3B2C2AFD7C00F9A11B /* AIGenerationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIGenerationModel.swift; sourceTree = "<group>"; };
+		A3CEFD3D2C2AFE1700F9A11B /* StableDiffusionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableDiffusionModel.swift; sourceTree = "<group>"; };
+		A3CEFD3F2C2AFF2900F9A11B /* OpenAIGenerationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIGenerationModel.swift; sourceTree = "<group>"; };
+		A3CEFD432C2B017600F9A11B /* StableDiffusionCreateImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableDiffusionCreateImageRequest.swift; sourceTree = "<group>"; };
+		A3CEFD452C2B01A200F9A11B /* StableDiffusionCreateImageRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableDiffusionCreateImageRequestBody.swift; sourceTree = "<group>"; };
+		A3CEFD472C2B02C200F9A11B /* StableDiffusionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableDiffusionHTTPClient.swift; sourceTree = "<group>"; };
+		A3CEFD4B2C2B03B600F9A11B /* StableDiffusionCreateImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableDiffusionCreateImageResponse.swift; sourceTree = "<group>"; };
+		A3CEFD4F2C2B0A8F00F9A11B /* StableDiffusionResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableDiffusionResponseMapper.swift; sourceTree = "<group>"; };
 		A3DF39262BCE9A66003EAF23 /* View+DismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+DismissKeyboard.swift"; sourceTree = "<group>"; };
 		A3DF39292BCE9B0D003EAF23 /* UIApplication+EndEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+EndEditing.swift"; sourceTree = "<group>"; };
 		A3DF39322BCEA6B0003EAF23 /* Color+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Custom.swift"; sourceTree = "<group>"; };
@@ -549,6 +565,7 @@
 		A3B12EB42BB18AD4009E4457 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A3CEFD4D2C2B0A6600F9A11B /* Data Mappers */,
 				A32E0A3A2C17360000A9625C /* Date Formatter */,
 				A3DF39242BCE9A3B003EAF23 /* Extensions */,
 				A3624E632BC7DC5500035098 /* Views */,
@@ -568,6 +585,7 @@
 		A3B12EB82BB19120009E4457 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A3CEFD382C2AFD2100F9A11B /* AIGenerationModels */,
 				A32E0A2B2C16FBCD00A9625C /* Storage */,
 				A3B12EB92BB19134009E4457 /* Logging */,
 				A3CC27172BAAF49A00571E5B /* HTTPClient */,
@@ -587,8 +605,8 @@
 		A3B12EC12BB1BDDF009E4457 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				A3B12EC32BB1BFE1009E4457 /* CreateImageRequest.swift */,
-				A3B12ECA2BB1C791009E4457 /* CreateImageRequestBody.swift */,
+				A3CEFD422C2B008900F9A11B /* Stable Diffusion */,
+				A3CEFD412C2B008000F9A11B /* OpenAI */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -596,7 +614,8 @@
 		A3B12EC22BB1BDE6009E4457 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
-				A3B12EC52BB1C083009E4457 /* CreateImageResponse.swift */,
+				A3CEFD4A2C2B03A100F9A11B /* Stable Diffusion */,
+				A3CEFD492C2B039900F9A11B /* OpenAI */,
 				A3E82D8F2C2AD75F00644597 /* ErrorResponse.swift */,
 			);
 			path = Responses;
@@ -635,6 +654,7 @@
 				A3B12EC12BB1BDDF009E4457 /* Requests */,
 				A3B12EB12BB18675009E4457 /* HTTPRequest */,
 				A3CC27182BAAF4DA00571E5B /* OpenAIHTTPClient.swift */,
+				A3CEFD472C2B02C200F9A11B /* StableDiffusionHTTPClient.swift */,
 				A3B12EAF2BB18660009E4457 /* HTTPClient.swift */,
 				A30FE2B12C0734EE009341A1 /* URLSessionProtocol.swift */,
 				A3B4D5202BCD8F23007A6188 /* NetworkConnectionMonitor.swift */,
@@ -649,6 +669,82 @@
 				A3CC271D2BAB365B00571E5B /* Config.plist */,
 			);
 			path = ConfigLoader;
+			sourceTree = "<group>";
+		};
+		A3CEFD382C2AFD2100F9A11B /* AIGenerationModels */ = {
+			isa = PBXGroup;
+			children = (
+				A3CEFD3B2C2AFD7C00F9A11B /* AIGenerationModel.swift */,
+				A3CEFD3A2C2AFD3B00F9A11B /* Stable Diffusion */,
+				A3CEFD392C2AFD2D00F9A11B /* Open AI */,
+			);
+			path = AIGenerationModels;
+			sourceTree = "<group>";
+		};
+		A3CEFD392C2AFD2D00F9A11B /* Open AI */ = {
+			isa = PBXGroup;
+			children = (
+				A3CEFD3F2C2AFF2900F9A11B /* OpenAIGenerationModel.swift */,
+			);
+			path = "Open AI";
+			sourceTree = "<group>";
+		};
+		A3CEFD3A2C2AFD3B00F9A11B /* Stable Diffusion */ = {
+			isa = PBXGroup;
+			children = (
+				A3CEFD3D2C2AFE1700F9A11B /* StableDiffusionModel.swift */,
+			);
+			path = "Stable Diffusion";
+			sourceTree = "<group>";
+		};
+		A3CEFD412C2B008000F9A11B /* OpenAI */ = {
+			isa = PBXGroup;
+			children = (
+				A3B12EC32BB1BFE1009E4457 /* CreateImageRequest.swift */,
+				A3B12ECA2BB1C791009E4457 /* CreateImageRequestBody.swift */,
+			);
+			path = OpenAI;
+			sourceTree = "<group>";
+		};
+		A3CEFD422C2B008900F9A11B /* Stable Diffusion */ = {
+			isa = PBXGroup;
+			children = (
+				A3CEFD432C2B017600F9A11B /* StableDiffusionCreateImageRequest.swift */,
+				A3CEFD452C2B01A200F9A11B /* StableDiffusionCreateImageRequestBody.swift */,
+			);
+			path = "Stable Diffusion";
+			sourceTree = "<group>";
+		};
+		A3CEFD492C2B039900F9A11B /* OpenAI */ = {
+			isa = PBXGroup;
+			children = (
+				A3B12EC52BB1C083009E4457 /* CreateImageResponse.swift */,
+			);
+			path = OpenAI;
+			sourceTree = "<group>";
+		};
+		A3CEFD4A2C2B03A100F9A11B /* Stable Diffusion */ = {
+			isa = PBXGroup;
+			children = (
+				A3CEFD4B2C2B03B600F9A11B /* StableDiffusionCreateImageResponse.swift */,
+			);
+			path = "Stable Diffusion";
+			sourceTree = "<group>";
+		};
+		A3CEFD4D2C2B0A6600F9A11B /* Data Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				A3CEFD4E2C2B0A7800F9A11B /* Stable Diffusion */,
+			);
+			path = "Data Mappers";
+			sourceTree = "<group>";
+		};
+		A3CEFD4E2C2B0A7800F9A11B /* Stable Diffusion */ = {
+			isa = PBXGroup;
+			children = (
+				A3CEFD4F2C2B0A8F00F9A11B /* StableDiffusionResponseMapper.swift */,
+			);
+			path = "Stable Diffusion";
 			sourceTree = "<group>";
 		};
 		A3DF39242BCE9A3B003EAF23 /* Extensions */ = {
@@ -888,6 +984,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3CEFD3C2C2AFD7C00F9A11B /* AIGenerationModel.swift in Sources */,
 				A32E0A2E2C16FBF900A9625C /* StoredImagesDataManager.swift in Sources */,
 				A3A77E6A2BC6DAE800361F8F /* CreateImageViewModel.swift in Sources */,
 				A3DF392A2BCE9B0D003EAF23 /* UIApplication+EndEditing.swift in Sources */,
@@ -899,12 +996,14 @@
 				A3624E692BC816C800035098 /* AlertView.swift in Sources */,
 				A3B4D5212BCD8F23007A6188 /* NetworkConnectionMonitor.swift in Sources */,
 				A3E4D8C62C16F76400738266 /* StoredImage+CoreDataClass.swift in Sources */,
+				A3CEFD3E2C2AFE1700F9A11B /* StableDiffusionModel.swift in Sources */,
 				A3655B992BAA05DC006C0025 /* AppSession.swift in Sources */,
 				A3E2991B2C134F84007F22F7 /* SettingsViewModel.swift in Sources */,
 				A3B12EBB2BB19143009E4457 /* AppLogger.swift in Sources */,
 				A3BF9EB12BD0379B00B9F082 /* SheetViewRow.swift in Sources */,
 				A3DF39382BCEC7C8003EAF23 /* MainButton.swift in Sources */,
 				A3CC27192BAAF4DA00571E5B /* OpenAIHTTPClient.swift in Sources */,
+				A3CEFD482C2B02C200F9A11B /* StableDiffusionHTTPClient.swift in Sources */,
 				A3B12EB72BB18B2B009E4457 /* ExtendedLocalizedError.swift in Sources */,
 				A32E0A372C170F3100A9625C /* StoredImagesView.swift in Sources */,
 				A3B12EC42BB1BFE1009E4457 /* CreateImageRequest.swift in Sources */,
@@ -917,7 +1016,10 @@
 				A3DF393B2BCED533003EAF23 /* Binding+Map.swift in Sources */,
 				A3624E6C2BC831E500035098 /* ErrorImage.swift in Sources */,
 				A34B65D02BCFE3CA00A4CD96 /* OptionButtonStyle.swift in Sources */,
+				A3CEFD4C2C2B03D600F9A11B /* StableDiffusionCreateImageResponse.swift in Sources */,
+				A3CEFD462C2B01A200F9A11B /* StableDiffusionCreateImageRequestBody.swift in Sources */,
 				A3DF39362BCEC299003EAF23 /* CTAButtonStyle.swift in Sources */,
+				A3CEFD442C2B017600F9A11B /* StableDiffusionCreateImageRequest.swift in Sources */,
 				A389DCB62BA9F5580019D904 /* Image_Genarator.xcdatamodeld in Sources */,
 				A3B12ECB2BB1C791009E4457 /* CreateImageRequestBody.swift in Sources */,
 				A3CC271C2BAAF52A00571E5B /* ConfigLoader.swift in Sources */,
@@ -934,6 +1036,8 @@
 				A30FE2B22C0734EE009341A1 /* URLSessionProtocol.swift in Sources */,
 				A3B12ED12BB1CDC6009E4457 /* CreateImageView.swift in Sources */,
 				A30FE2B02C072982009341A1 /* StringOptional+NotEmpty.swift in Sources */,
+				A3CEFD502C2B0A8F00F9A11B /* StableDiffusionResponseMapper.swift in Sources */,
+				A3CEFD402C2AFF2900F9A11B /* OpenAIGenerationModel.swift in Sources */,
 				A34B65CB2BCFCCC400A4CD96 /* GeneratedImageViewModel.swift in Sources */,
 				A3E299162C13487A007F22F7 /* SettingsView.swift in Sources */,
 			);

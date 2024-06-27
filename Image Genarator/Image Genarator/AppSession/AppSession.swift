@@ -10,10 +10,25 @@ import CoreData
 
 final class AppSession: ObservableObject {
     
-    lazy private(set) var openAIClient: HTTPClient = OpenAIHTTPClient(
+    lazy private(set) var openAIHTTPClient: HTTPClient = OpenAIHTTPClient(
         session: URLSession.shared,
         host: APIUrls.openAIApiURL,
         apiVersion: "v1",
+        notAuthorizedHandler: nil,
+        serverErrorHandler: nil,
+        setAuthorizationTokenHandler: nil,
+        refreshAuthorizationTokenHandler: nil,
+        connectionStateChangedHandler: { status in
+            DispatchQueue.main.async { [weak self] in
+                self?.connectionIsReachable = status == .satisfied
+            }
+        }
+    )
+    
+    lazy private(set) var stableDiffusionHTTPClient: HTTPClient = OpenAIHTTPClient(
+        session: URLSession.shared,
+        host: APIUrls.stableDiffusionApiURL,
+        apiVersion: "api/v3",
         notAuthorizedHandler: nil,
         serverErrorHandler: nil,
         setAuthorizationTokenHandler: nil,
