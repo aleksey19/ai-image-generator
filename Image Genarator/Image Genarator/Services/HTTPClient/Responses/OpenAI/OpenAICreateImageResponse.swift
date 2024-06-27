@@ -24,7 +24,7 @@ struct OpenAICreateImageResponseImage: Equatable {
         else { throw AppError.server("Can't compose image url from string while decoding: \(urlString)") }
         
         self.url = url
-        self.revisedPrompt = try container.decode(String.self, forKey: .revisedPrompt)
+        self.revisedPrompt = try? container.decode(String.self, forKey: .revisedPrompt)
     }
     
     init(url: URL?,

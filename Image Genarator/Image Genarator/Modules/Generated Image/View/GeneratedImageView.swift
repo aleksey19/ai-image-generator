@@ -46,7 +46,7 @@ struct GeneratedImageView: View {
                     
                     HStack(alignment: .center) {
                         MainButton(enabled: .constant(true), foregroundColor: .buttonTitle2, backgroundColor: .button2, title: "Save") {
-                            // Save to core data
+//                            dataManager.saveToDBImage(with: viewModel.imageUrl, prompt: viewModel.prompt)
                         }
 
                         MainButton(enabled: .constant(true), foregroundColor: .buttonTitle2, backgroundColor: .button2, title: "Share") {
@@ -61,7 +61,6 @@ struct GeneratedImageView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        dataManager.saveToDBImage(with: viewModel.imageUrl, prompt: viewModel.prompt)
                         dismiss()
                     } label: {
                         Image(systemName: "xmark.circle.fill")

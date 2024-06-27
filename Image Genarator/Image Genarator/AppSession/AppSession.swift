@@ -41,9 +41,12 @@ final class AppSession: ObservableObject {
     )
     
     private var container: NSPersistentContainer =  {
+        let modelUrl = Bundle.main.url(forResource: "Image_Genarator", withExtension: "momd")!
+        let managedObjectModel = NSManagedObjectModel.init(contentsOf: modelUrl)!
+        let container = NSPersistentContainer(name: "Image_Genarator", managedObjectModel: managedObjectModel)
+        
         let description = NSPersistentStoreDescription()
-        description.type = NSSQLiteStoreType
-        let container = NSPersistentContainer(name: "Image_Genarator")
+        description.type = NSInMemoryStoreType
         container.persistentStoreDescriptions = [description]
         
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in

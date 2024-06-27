@@ -622,13 +622,6 @@
 			path = Responses;
 			sourceTree = "<group>";
 		};
-		A3B12EC72BB1C0E8009E4457 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		A3B12ECC2BB1CB6E009E4457 /* Create Image */ = {
 			isa = PBXGroup;
 			children = (
@@ -649,7 +642,6 @@
 		A3CC27172BAAF49A00571E5B /* HTTPClient */ = {
 			isa = PBXGroup;
 			children = (
-				A3B12EC72BB1C0E8009E4457 /* Models */,
 				A3B12EC22BB1BDE6009E4457 /* Responses */,
 				A3B12EC12BB1BDDF009E4457 /* Requests */,
 				A3B12EB12BB18675009E4457 /* HTTPRequest */,

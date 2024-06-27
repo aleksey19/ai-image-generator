@@ -26,7 +26,7 @@ extension AppError: ExtendedLocalizedError {
         case .develop(_):
             return "gear.badge.xmark"
         
-        case .server(_):
+        case .server(_), .decoding(_):
             return "externaldrive.fill.badge.xmark"
             
         case .navigation(_):
@@ -40,7 +40,7 @@ extension AppError: ExtendedLocalizedError {
         case .develop(let e):
             return e
             
-        case .server(let e):
+        case .server(let e), .decoding(let e):
             return e
             
         case .navigation(let e):
@@ -59,6 +59,9 @@ extension AppError: ExtendedLocalizedError {
             
         case .navigation(_):
             return "Scenes navigation error. Ensure that routing works correctly"
+            
+        case .decoding(_):
+            return "Check coding models"
         }
     }
 }
