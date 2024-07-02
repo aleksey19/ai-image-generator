@@ -15,8 +15,26 @@ struct MainButton: View {
     
     let foregroundColor: Color
     let backgroundColor: Color
-    let title: String
+    let image: String?
+    let title: String?
     let action: () -> Void
+    let stretched: Bool
+    
+    init(enabled: Binding<Bool>,
+         foregroundColor: Color,
+         backgroundColor: Color,
+         image: String? = nil,
+         title: String? = nil,
+         stretched: Bool = true,
+         action: @escaping () -> Void) {
+        self._enabled = enabled
+        self.foregroundColor = foregroundColor
+        self.backgroundColor = backgroundColor
+        self.image = image
+        self.title = title
+        self.action = action
+        self.stretched = stretched
+    }
     
     var body: some View {
         HStack {
@@ -24,9 +42,18 @@ struct MainButton: View {
             
             Button(action: action) {
                 HStack {
-                    Spacer()
-                    Text(title)
-                    Spacer()
+                    if stretched {
+                        Spacer()
+                    }
+                    if let image = image {
+                        Image(systemName: image)
+                    }
+                    if let title = title {
+                        Text(title)
+                    }
+                    if stretched {
+                        Spacer()
+                    }
                 }
             }
             .buttonStyle(
@@ -45,7 +72,9 @@ struct CTAButton_Previews: PreviewProvider {
             enabled: .constant(true),
             foregroundColor: .buttonTitle,
             backgroundColor: .button,
+            image: "square.and.arrow.up",
             title: "Press Me",
+            stretched: true,
             action: {}
         )
     }

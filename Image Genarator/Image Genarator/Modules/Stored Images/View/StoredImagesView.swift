@@ -9,34 +9,33 @@ import SwiftUI
 
 struct StoredImagesView: View {
     
-    @FetchRequest(
-        sortDescriptors: [
-            SortDescriptor(\.timestamp, order: .reverse)
-        ]
-    ) var images: FetchedResults<StoredImage>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.timestamp, order: .reverse)])
+    private var images: FetchedResults<StoredImage>
     
     var body: some View {
         ZStack {
             Color.bg.edgesIgnoringSafeArea([.all])
             
-            List {
-                ForEach(images, id: \.self) { image in
-                    NavigationLink {
-                        Text(image.prompt ?? "")
-                    } label: {
-                        if let timestamp = image.timestamp,
-                           let prompt = image.prompt,
-                           let imageUrl = image.imageUrl {
-                            StoredImageItemView(timestamp: timestamp, prompt: prompt, imageUrl: imageUrl)
-                        } else {
-                            EmptyView()
+            ScrollView {
+                LazyVGrid(columns: [_](repeating: GridItem(), count: 1)) {
+                    ForEach(images, id: \.self) { image in
+                        NavigationLink {
+                            Text(image.prompt ?? "")
+                        } label: {
+                            if let timestamp = image.timestamp,
+                               let prompt = image.prompt,
+                               let imageUrl = image.imageUrl {
+                                StoredImageItemView(timestamp: timestamp, prompt: prompt, imageUrl: imageUrl)
+                            } else {
+                                EmptyView()
+                            }
                         }
                     }
+                    .listRowBackground(Color.clear)
                 }
-                .listRowBackground(Color.clear)
+                .scrollContentBackground(.hidden)
+                .background(Color.bg)
             }
-            .scrollContentBackground(.hidden)
-            .background(Color.bg)
         }
     }
 }

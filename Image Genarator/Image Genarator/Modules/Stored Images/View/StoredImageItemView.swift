@@ -32,7 +32,10 @@ struct StoredImageItemView: View {
                                 .padding(5)
                         }
                         
-                        Text(prompt)
+                        VStack {
+                            Text(prompt)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 
                 
@@ -44,7 +47,7 @@ struct StoredImageItemView: View {
                         .resizable()
                         .scaledToFit()
                         .foregroundColor(.textMain)
-                        .animation(.easeInOut(duration: 0.1), value: 1)
+                        .animation(.easeInOut(duration: 0.3).repeatForever(autoreverses: true), value: 0.5)
                     
                 default:
                     EmptyView()

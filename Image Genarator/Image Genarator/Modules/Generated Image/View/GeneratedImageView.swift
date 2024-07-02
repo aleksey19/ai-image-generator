@@ -44,15 +44,24 @@ struct GeneratedImageView: View {
                     }
                     .padding()
                     
-                    HStack(alignment: .center) {
-                        MainButton(enabled: .constant(true), foregroundColor: .buttonTitle2, backgroundColor: .button2, title: "Save") {
+                    HStack() {
+                        MainButton(enabled: .constant(true), foregroundColor: .buttonTitle2, backgroundColor: .button2, image: "square.and.arrow.down", stretched: false) {
+                            /// Save to db and Photos
                             viewModel.saveImageToDB()
+                            /// Save to Photos
+                            viewModel.saveToPhotos()
                             dismiss()
                         }
-
-                        MainButton(enabled: .constant(true), foregroundColor: .buttonTitle2, backgroundColor: .button2, title: "Share") {
+                        
+//                        MainButton(enabled: .constant(true), foregroundColor: .buttonTitle2, backgroundColor: .button2, image: "photo.on.rectangle.angled", stretched: false) {
+//                            /// Open Photos
+//                        }
+                        
+                        MainButton(enabled: .constant(true), foregroundColor: .buttonTitle2, backgroundColor: .button2, image: "square.and.arrow.up", stretched: false) {
                             // Share image
                         }
+                        
+                        Spacer()
                     }
                     .padding([.leading, .trailing], 10)
                 }

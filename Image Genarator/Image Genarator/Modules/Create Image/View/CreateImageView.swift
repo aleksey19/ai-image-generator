@@ -61,7 +61,7 @@ struct CreateImageView: View {
                 }
                 .padding([.leading, .trailing], 10)
                 
-                MainButton(enabled: $prompt.map { $0.count > 2 }, foregroundColor: .buttonTitle, backgroundColor: .button, title: "Create Image") {
+                MainButton(enabled: $prompt.map { $0.count > 2 }, foregroundColor: .buttonTitle, backgroundColor: .button, image: nil, title: "Create Image") {
                     dismissKeyboard()
                     Task {
                         await createImage()
@@ -92,7 +92,7 @@ struct CreateImageView: View {
         .sheet(isPresented: $presentImageSheet) {
             if let imageUrl = viewModel.imageUrl {
                 GeneratedImageView(
-                    viewModel: GeneratedImageViewModel(imageUrl: imageUrl, prompt: prompt, storedImagesManager: viewModel.storedImagesManager)
+                    viewModel: GeneratedImageViewModel(imageUrl: imageUrl, prompt: prompt, storedImagesManager: viewModel.storedImagesManager, photoAlbumService: viewModel.photoAlbumService)
                 )
             }
         }

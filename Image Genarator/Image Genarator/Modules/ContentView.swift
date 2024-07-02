@@ -43,7 +43,8 @@ struct ContentView: View {
                     viewModel: .init(
                         appSession: appSession,
                         generationModel: OpenAIGenerationModel(httpClient: appSession.openAIHTTPClient),
-                        storedImagesManager: appSession.imagesStorageDataManager
+                        storedImagesManager: appSession.imagesStorageDataManager,
+                        photoAlbumService: appSession.photoAlbumService
                     )
                 )
                 .preferredColorScheme(isDarkMode ? .dark : .light)

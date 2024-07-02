@@ -13,6 +13,7 @@ final class CreateImageViewModel: ObservableObject {
     private weak var appSession: AppSession?
     private var generationModel: AIGenerationModel
     private(set) unowned var storedImagesManager: StoredImagesDataManager
+    private(set) unowned var photoAlbumService: PhotoAlbumService
     
     @MainActor
     @Published private(set) var imageUrl: URL? = nil
@@ -39,10 +40,12 @@ final class CreateImageViewModel: ObservableObject {
     
     init(appSession: AppSession,
          generationModel: AIGenerationModel,
-         storedImagesManager: StoredImagesDataManager) {
+         storedImagesManager: StoredImagesDataManager,
+         photoAlbumService: PhotoAlbumService) {
         self.appSession = appSession
         self.generationModel = generationModel
         self.storedImagesManager = storedImagesManager
+        self.photoAlbumService = photoAlbumService
     }
     
     // MARK: - Requests
@@ -55,26 +58,25 @@ final class CreateImageViewModel: ObservableObject {
             appSession?.isLoadingNetworkData = true
         }
         
-        try? await Task.sleep(nanoseconds: 2_000_000_000)
+//        try? await Task.sleep(nanoseconds: 2_000_000_000)
+//
+//        await MainActor.run(body: {
+//            imageUrl = URL(string: "https://www.atlasandboots.com/wp-content/uploads/2019/05/ama-dablam2-most-beautiful-mountains-in-the-world.jpg")
+//            //            error = .server("Can't generate image. Please try again later or change the prompt")
+//        })
         
-        await MainActor.run(body: {
-            imageUrl = URL(string: "https://www.atlasandboots.com/wp-content/uploads/2019/05/ama-dablam2-most-beautiful-mountains-in-the-world.jpg")
-            //            error = .server("Can't generate image. Please try again later or change the prompt")
-        })
-        
-//        do {
-//            let image = try await generationModel.generateImage(prompt: prompt)
-//            if let url = image.url {
-//                await MainActor.run(body: {
-//                    imageUrl = url
-//                })
-//                storedImagesManager.saveToDBImage(with: url, prompt: prompt)
-//            }
-//        } catch {
-//            await MainActor.run {
-//                self.error = .server(error.localizedDescription)
-//            }
-//        }
+        do {
+            let image = try await generationModel.generateImage(prompt: prompt)
+            if let url = image.url {
+                await MainActor.run(body: {
+                    imageUrl = url
+                })
+            }
+        } catch {
+            await MainActor.run {
+                self.error = .server(error.localizedDescription)
+            }
+        }
         
         await MainActor.run(body: {
             showLoading.toggle()

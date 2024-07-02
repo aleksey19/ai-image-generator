@@ -17,6 +17,7 @@
 		A30FE2BB2C0778D4009341A1 /* CreateImageResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = A30FE2BA2C0778D4009341A1 /* CreateImageResponse.json */; };
 		A30FE2BF2C077B0C009341A1 /* Data+JSONFromFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30FE2BE2C077B0C009341A1 /* Data+JSONFromFile.swift */; };
 		A30FE2C02C077F8D009341A1 /* CreateImageResponse_WrongKey.json in Resources */ = {isa = PBXBuildFile; fileRef = A30FE2BC2C077A45009341A1 /* CreateImageResponse_WrongKey.json */; };
+		A32688A72C3407AE00FC7476 /* PhotoAlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32688A62C3407AE00FC7476 /* PhotoAlbumService.swift */; };
 		A32E0A2E2C16FBF900A9625C /* StoredImagesDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32E0A2D2C16FBF900A9625C /* StoredImagesDataManager.swift */; };
 		A32E0A302C170C8E00A9625C /* StoredDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32E0A2F2C170C8E00A9625C /* StoredDataManager.swift */; };
 		A32E0A352C170EF200A9625C /* StoredImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32E0A342C170EF200A9625C /* StoredImagesViewModel.swift */; };
@@ -113,6 +114,7 @@
 		A30FE2BA2C0778D4009341A1 /* CreateImageResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CreateImageResponse.json; sourceTree = "<group>"; };
 		A30FE2BC2C077A45009341A1 /* CreateImageResponse_WrongKey.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CreateImageResponse_WrongKey.json; sourceTree = "<group>"; };
 		A30FE2BE2C077B0C009341A1 /* Data+JSONFromFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+JSONFromFile.swift"; sourceTree = "<group>"; };
+		A32688A62C3407AE00FC7476 /* PhotoAlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumService.swift; sourceTree = "<group>"; };
 		A32E0A2D2C16FBF900A9625C /* StoredImagesDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredImagesDataManager.swift; sourceTree = "<group>"; };
 		A32E0A2F2C170C8E00A9625C /* StoredDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredDataManager.swift; sourceTree = "<group>"; };
 		A32E0A342C170EF200A9625C /* StoredImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredImagesViewModel.swift; sourceTree = "<group>"; };
@@ -271,6 +273,14 @@
 				A30FE2BE2C077B0C009341A1 /* Data+JSONFromFile.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A32688A52C34079E00FC7476 /* Image Downloader */ = {
+			isa = PBXGroup;
+			children = (
+				A32688A62C3407AE00FC7476 /* PhotoAlbumService.swift */,
+			);
+			path = "Image Downloader";
 			sourceTree = "<group>";
 		};
 		A32E0A2B2C16FBCD00A9625C /* Storage */ = {
@@ -586,6 +596,7 @@
 		A3B12EB82BB19120009E4457 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A32688A52C34079E00FC7476 /* Image Downloader */,
 				A3CEFD382C2AFD2100F9A11B /* AIGenerationModels */,
 				A32E0A2B2C16FBCD00A9625C /* Storage */,
 				A3B12EB92BB19134009E4457 /* Logging */,
@@ -1030,6 +1041,7 @@
 				A3B12EB02BB18660009E4457 /* HTTPClient.swift in Sources */,
 				A3E82D902C2AD75F00644597 /* ErrorResponse.swift in Sources */,
 				A3B12ED02BB1CD82009E4457 /* ContentView.swift in Sources */,
+				A32688A72C3407AE00FC7476 /* PhotoAlbumService.swift in Sources */,
 				A3B12EB32BB18690009E4457 /* HTTPRequest.swift in Sources */,
 				A389DCAA2BA9F5540019D904 /* Image_GenaratorApp.swift in Sources */,
 				A30FE2B22C0734EE009341A1 /* URLSessionProtocol.swift in Sources */,
@@ -1212,6 +1224,7 @@
 				DEVELOPMENT_TEAM = V6XQXZ6H2Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "You can save generated images to Photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1242,6 +1255,7 @@
 				DEVELOPMENT_TEAM = V6XQXZ6H2Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "You can save generated images to Photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

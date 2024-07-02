@@ -53,6 +53,8 @@ final class AppSession: ObservableObject {
     }()
     
     lazy private(set) var imagesStorageDataManager = StoredImagesDataManager(persistentContainer: container)
+    lazy private(set) var photoAlbumService = PhotoAlbumService()
+    
     
     @Published var connectionIsReachable: Bool = true
     @Published var isLoadingNetworkData: Bool = false
