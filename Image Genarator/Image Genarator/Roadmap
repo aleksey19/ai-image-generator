@@ -7,8 +7,8 @@ Features
 4. Genarate image with uploaded image.
 5. Genarate image with photo.
 6. Genarate image using previously generated.
-7. Settings (storage, AI API usage quota)
-8. Add network availability timer due to API usage quota
+7. Settings (storage, AI API usage quota) ❓
+8. Add network availability timer due to API usage quota ❓
 9. Unit tests
 
 Feature plan
