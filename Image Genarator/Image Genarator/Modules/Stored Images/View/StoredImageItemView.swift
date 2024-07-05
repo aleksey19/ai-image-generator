@@ -40,7 +40,8 @@ struct StoredImageItemView: View {
                 
                 
                 case .failure(let error):
-                    Text(error.localizedDescription)
+                    Text("Error while loading image")
+                    // FIXME: - 403 error while loading image
                     
                 case .empty:
                     Image(systemName: "photo")
