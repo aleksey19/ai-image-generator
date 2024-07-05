@@ -13,28 +13,39 @@ struct StoredImagesView: View {
     private var images: FetchedResults<StoredImage>
     
     var body: some View {
-        ZStack {
-            Color.bg.edgesIgnoringSafeArea([.all])
-            
-            ScrollView {
-                LazyVGrid(columns: [_](repeating: GridItem(), count: 1)) {
-                    ForEach(images, id: \.self) { image in
-                        NavigationLink {
-                            Text(image.prompt ?? "")
-                        } label: {
-                            if let timestamp = image.timestamp,
-                               let prompt = image.prompt,
-                               let imageUrl = image.imageUrl {
-                                StoredImageItemView(timestamp: timestamp, prompt: prompt, imageUrl: imageUrl)
-                            } else {
-                                EmptyView()
+        NavigationStack {
+            ZStack {
+                Color.bg.edgesIgnoringSafeArea([.all])
+                
+                ScrollView {
+                    LazyVGrid(columns: [_](repeating: GridItem(), count: 1)) {
+                        ForEach(images, id: \.self) { image in
+                            NavigationLink {
+                                Text(image.prompt ?? "")
+                            } label: {
+                                if let timestamp = image.timestamp,
+                                   let prompt = image.prompt,
+                                   let imageUrl = image.imageUrl {
+                                    StoredImageItemView(timestamp: timestamp, prompt: prompt, imageUrl: imageUrl)
+                                } else {
+                                    EmptyView()
+                                }
                             }
                         }
+                        .listRowBackground(Color.clear)
                     }
-                    .listRowBackground(Color.clear)
+                    .scrollContentBackground(.hidden)
+                    .background(Color.bg)
                 }
-                .scrollContentBackground(.hidden)
-                .background(Color.bg)
+            }
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                        /// Show pop up with clear db dialog
+                    } label: {
+                        Image(systemName: "trash")
+                    }
+                }
             }
         }
     }
