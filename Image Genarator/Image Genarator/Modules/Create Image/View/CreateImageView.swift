@@ -18,7 +18,7 @@ struct CreateImageView: View {
         presentError || presentImageSheet || presentImageStyleSheet || presentImageSizeSheet || presentImageGeneratorSourceSheet
     }
     
-    // MARK: - Presenting switchers
+    // MARK: - Alert presenting switchers
     
     @State private var presentError: Bool = false
     @State private var presentImageSheet: Bool = false
@@ -26,7 +26,9 @@ struct CreateImageView: View {
     @State private var presentImageSizeSheet: Bool = false
     @State private var presentImageGeneratorSourceSheet: Bool = false
     
-    @State var enableCreateImage: Bool = false
+    // MARK: - UI state switchers
+    
+    @State private var enableCreateImage: Bool = false
     
     // MARK: - Body
     
@@ -36,15 +38,28 @@ struct CreateImageView: View {
             
             VStack(alignment: .center) {
                 
-                TextField("Enter image prompt", text: $prompt.animation(), axis: .vertical)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(5, reservesSpace: true)
-                    .padding()
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.textMain, lineWidth: 2)
+                ZStack(alignment: .topTrailing) {
+                    TextField("Enter image prompt", text: $prompt.animation(), axis: .vertical)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(5, reservesSpace: true)
+                        .padding()
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.textMain, lineWidth: 2)
+                        }
+                        .padding(10)
+                    
+                    if !prompt.isEmpty {
+                        ZStack {
+                            Button {
+                                prompt = ""
+                            } label: {
+                                Image(systemName: "xmark.circle")
+                            }
+                        }
+                        .padding(20)
                     }
-                    .padding(10)
+                }
                 
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], alignment: .leading, spacing: 15) {
                     OptionButton(enabled: .constant(true), foregroundColor: .buttonTitle2, backgroundColor: .button2, title: "Style", isOptional: true) {
