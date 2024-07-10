@@ -22,15 +22,21 @@ struct StoredImageItemView: View {
                         .scaledToFit()
                 }
 
-                Text(DateFormatter.appDateFormatter().string(from: timestamp))
-                    .foregroundColor(.white)
-                    .padding(7)
-                    .background(Color.black.opacity(0.66))
-                    .padding(5)
+                HStack {
+                    Text("\(imageData.count / 1024)KB")
+                        .foregroundColor(.white)
+                    Text("|").foregroundColor(.white)
+                    Text(DateFormatter.appDateFormatter().string(from: timestamp))
+                        .foregroundColor(.white)
+                }
+                .padding(7)
+                .background(Color.black.opacity(0.66))
+                .padding(5)
             }
 
             VStack {
                 Text(prompt)
+                    .foregroundColor(.textMain)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }

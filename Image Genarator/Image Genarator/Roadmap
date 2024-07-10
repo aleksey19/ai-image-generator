@@ -30,10 +30,10 @@ Feature plan
 
 2. Save generated image to core data.
 2.1. Add toggle "Save to core data" at the generate image screen.
-2.2. Save generated image to core data and display stored result.
+2.2. Save generated image to core data and display stored result. ✅
 2.3. Show saved images tab if db not empty. ✅
-2.4. Fix 403 error while loading images.
-2.5. Add cache for images.
+2.4. Fix 403 error while loading images. ✅
+2.5. Add cache for images. ✅
 
 3. View a list of stored images.
 3.1. Add view for displaying stored images.
