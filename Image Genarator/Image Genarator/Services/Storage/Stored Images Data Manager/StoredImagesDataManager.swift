@@ -26,15 +26,14 @@ final class StoredImagesDataManager: StoredDataManager, ObservableObject {
     
     // MARK: - Save image
     
-    func saveToDBImage(with url: URL?,
-                       prompt: String?) {
-        if let prompt = prompt,
-           let url = url {
-            saveImage(uuid: UUID(),
-                      timestamp: Date(),
-                      prompt: prompt,
-                      imageUrl: url)
-        }
+    func saveToDBImage(with url: URL? = nil,
+                       base64Data: Data? = nil,
+                       prompt: String) {
+        saveImage(uuid: UUID(),
+                  timestamp: Date(),
+                  prompt: prompt,
+                  imageUrl: url,
+                  imageData: base64Data)
     }
     
     func deleteImage(_ image: StoredImage) {
@@ -59,12 +58,14 @@ final class StoredImagesDataManager: StoredDataManager, ObservableObject {
     private func saveImage(uuid: UUID,
                            timestamp: Date,
                            prompt: String,
-                           imageUrl: URL) {
+                           imageUrl: URL?,
+                           imageData: Data?) {
         let model = StoredImage(context: context)
         model.uuid = uuid.uuidString
         model.timestamp = timestamp
         model.prompt = prompt
         model.imageUrl = imageUrl
+        model.imageData = imageData
         
         saveContext()
     }

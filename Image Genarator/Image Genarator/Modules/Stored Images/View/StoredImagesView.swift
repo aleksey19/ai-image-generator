@@ -24,8 +24,8 @@ struct StoredImagesView: View {
                         } label: {
                             if let timestamp = image.timestamp,
                                let prompt = image.prompt,
-                               let imageUrl = image.imageUrl {
-                                StoredImageItemView(timestamp: timestamp, prompt: prompt, imageUrl: imageUrl)
+                               let imageData = image.imageData {
+                                StoredImageItemView(imageData: imageData, timestamp: timestamp, prompt: prompt)
                             } else {
                                 EmptyView()
                             }
@@ -40,8 +40,8 @@ struct StoredImagesView: View {
     }
 }
 
-struct StoredImagesView_Previews: PreviewProvider {
-    static var previews: some View {
-        StoredImagesView()
-    }
-}
+//struct StoredImagesView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        StoredImagesView()
+//    }
+//}

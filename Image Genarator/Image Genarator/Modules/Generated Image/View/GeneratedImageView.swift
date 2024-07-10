@@ -20,29 +20,13 @@ struct GeneratedImageView: View {
                 Color.bg.ignoresSafeArea()
                 
                 VStack {
-                    AsyncImage(url: viewModel.imageUrl) { phase in
-                        switch phase {
-                            
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .scaledToFit()
-                        
-                        case .failure(let error):
-                            Text(error.localizedDescription)
-                            
-                        case .empty:
-                            Image(systemName: "photo")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(.textMain)
-                                .animation(.easeInOut(duration: 0.1), value: 1)
-                            
-                        default:
-                            EmptyView()
-                        }
+                    if let data = viewModel.imageData,
+                       let image = UIImage(data: data) {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .padding()
                     }
-                    .padding()
                     
                     HStack() {
                         MainButton(enabled: .constant(true), foregroundColor: .buttonTitle2, backgroundColor: .button2, image: "square.and.arrow.down", stretched: false) {

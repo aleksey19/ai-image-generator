@@ -104,12 +104,15 @@ struct CreateImageView: View {
         .onChange(of: viewModel.imageUrl) { newValue in
             presentImageSheet = newValue != nil
         }
+        .onChange(of: viewModel.imageData) { newValue in
+            presentImageSheet = newValue != nil
+        }
         .sheet(isPresented: $presentImageSheet) {
-            if let imageUrl = viewModel.imageUrl {
-                GeneratedImageView(
-                    viewModel: GeneratedImageViewModel(imageUrl: imageUrl, prompt: prompt, storedImagesManager: viewModel.storedImagesManager, photoAlbumService: viewModel.photoAlbumService)
+            GeneratedImageView(
+                viewModel: GeneratedImageViewModel(
+                    imageUrl: viewModel.imageUrl, imageData: viewModel.imageData, prompt: prompt, storedImagesManager: viewModel.storedImagesManager, photoAlbumService: viewModel.photoAlbumService
                 )
-            }
+            )
         }
         .sheet(isPresented: $presentImageStyleSheet) {
             SheetView(selectedOption: viewModel.imageStyle, options: viewModel.imageStyles) {

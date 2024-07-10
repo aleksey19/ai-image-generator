@@ -10,11 +10,12 @@ import Foundation
 final class CreateImageResponseMapper {
     static func map(response: StableDiffusionCreateImageResponse) -> GeneratedImage {
         let url = URL(string: response.output.first ?? "")
-        return GeneratedImage(url: url, prompt: response.meta.prompt)
+        return GeneratedImage(url: url, data: nil, prompt: response.meta.prompt)
     }
     
     static func map(response: OpenAICreateImageResponse) -> GeneratedImage {
         let data = response.data.first
-        return GeneratedImage(url: data?.url, prompt: data?.revisedPrompt)
+        let base64Data = Data(base64Encoded: data?.base64String ?? "", options: .ignoreUnknownCharacters)
+        return GeneratedImage(url: data?.url, data: base64Data, prompt: data?.revisedPrompt)
     }
 }

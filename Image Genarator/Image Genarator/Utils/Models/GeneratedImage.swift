@@ -9,5 +9,6 @@ import Foundation
 
 struct GeneratedImage {
     let url: URL?
+    let data: Data?
     let prompt: String?
 }

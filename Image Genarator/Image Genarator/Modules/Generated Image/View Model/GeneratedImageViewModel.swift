@@ -10,17 +10,20 @@ import CoreData
 
 final class GeneratedImageViewModel: ObservableObject {
     
-    @Published private(set) var imageUrl: URL
+    @Published private(set) var imageUrl: URL?
+    @Published private(set) var imageData: Data?
     @Published private(set) var prompt: String
     
     private(set) unowned var storedImagesManager: StoredImagesDataManager
     private unowned var photoAlbumService: PhotoAlbumService
     
-    init(imageUrl: URL,
+    init(imageUrl: URL?,
+         imageData: Data?,
          prompt: String,
          storedImagesManager: StoredImagesDataManager,
          photoAlbumService: PhotoAlbumService) {
         self.imageUrl = imageUrl
+        self.imageData = imageData
         self.prompt = prompt
         self.storedImagesManager = storedImagesManager
         self.photoAlbumService = photoAlbumService
@@ -29,10 +32,12 @@ final class GeneratedImageViewModel: ObservableObject {
     // MARK: - Save image
     
     func saveImageToDB() {
-        storedImagesManager.saveToDBImage(with: imageUrl, prompt: prompt)
+        storedImagesManager.saveToDBImage(with: imageUrl, base64Data: imageData, prompt: prompt)
     }
     
     func saveToPhotos() {
-        photoAlbumService.addImageToPhotoAlbum(with: imageUrl)
+        if let data = imageData {
+            photoAlbumService.addImageToPhotoAlbum(with: data)
+        }
     }
 }

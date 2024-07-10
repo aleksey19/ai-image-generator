@@ -18,6 +18,14 @@ final class PhotoAlbumService: NSObject {
         }
     }
     
+    func addImageToPhotoAlbum(with data: Data) {
+        Task(priority: .high) {
+            if let image = UIImage(data: data) {
+                UIImageWriteToSavedPhotosAlbum(image, self, #selector(savedToPhotos), nil)
+            }
+        }
+    }
+    
     private func downloadImage(with url: URL) async -> UIImage? {
         if let data = try? Data(contentsOf: url),
            let image = UIImage(data: data) {

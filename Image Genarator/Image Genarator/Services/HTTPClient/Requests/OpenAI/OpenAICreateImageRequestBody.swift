@@ -13,4 +13,5 @@ struct OpenAICreateImageRequestBody: Encodable {
     let n: Int?
     let size: String?
     let style: String?
+    let response_format: String = "b64_json"
 }

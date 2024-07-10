@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit.UIImage
 
 final class OpenAIGenerationModel: AIGenerationModel {
     
@@ -27,6 +28,7 @@ final class OpenAIGenerationModel: AIGenerationModel {
         let body = OpenAICreateImageRequestBody(prompt: prompt, model: model, n: 1, size: size, style: nil)
         let request = OpenAICreateImageRequest(body: body)
         let response: OpenAICreateImageResponse = try await httpClient.execute(request)
+        
         return CreateImageResponseMapper.map(response: response)
     }
 }

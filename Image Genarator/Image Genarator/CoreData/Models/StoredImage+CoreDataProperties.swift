@@ -17,6 +17,7 @@ extension StoredImage {
     }
 
     @NSManaged public var aiGeneratorType: String?
+    @NSManaged public var imageData: Data?
     @NSManaged public var imageUrl: URL?
     @NSManaged public var prompt: String?
     @NSManaged public var timestamp: Date?

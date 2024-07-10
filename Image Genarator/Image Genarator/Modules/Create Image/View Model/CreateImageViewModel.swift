@@ -19,6 +19,9 @@ final class CreateImageViewModel: ObservableObject {
     @Published private(set) var imageUrl: URL? = nil
     
     @MainActor
+    @Published private(set) var imageData: Data? = nil
+    
+    @MainActor
     @Published private(set) var showLoading: Bool = false
     
     @MainActor
@@ -54,6 +57,7 @@ final class CreateImageViewModel: ObservableObject {
         await MainActor.run {
             error = nil
             imageUrl = nil
+            imageData = nil
             showLoading.toggle()
             appSession?.isLoadingNetworkData = true
         }
@@ -67,11 +71,10 @@ final class CreateImageViewModel: ObservableObject {
         
         do {
             let image = try await generationModel.generateImage(prompt: prompt)
-            if let url = image.url {
-                await MainActor.run(body: {
-                    imageUrl = url
-                })
-            }
+            await MainActor.run(body: {
+                imageUrl = image.url
+                imageData = image.data
+            })
         } catch {
             await MainActor.run {
                 self.error = .server(error.localizedDescription)
@@ -87,5 +90,6 @@ final class CreateImageViewModel: ObservableObject {
     @MainActor
     func cleanImage() {
         imageUrl = nil
+        imageData = nil
     }
 }
